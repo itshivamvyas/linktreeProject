@@ -2,7 +2,7 @@ import React from "react";
 
 function Header() {
   return (
-    <div className="p-3 rounded-2xl sticky top-0 backdrop-blur-xl">
+    <div className="p-3 rounded-2xl sticky top-0 bg-gray-300">
       <div className="flex flex-row justify-between bg-white p-1 rounded-full w-full sticky top-3">
         <ul className="flex flex-row p-2 gap-3 text-xl text-center items-center ps-8">
           <li className="text-center items-center justify-center cursor-pointer">

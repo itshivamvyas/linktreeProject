@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="flex flex-row justify-around bg-white min-h-32 items-center rounded-2xl mb-5">
+    <div className="flex flex-row justify-around bg-white min-h-32 items-center">
       <span className="font-bold">2024 Itshivamvyas. All rights reserved.</span>
 
       <p className="flex flex-row gap-16 list-none text-center font-bold">
