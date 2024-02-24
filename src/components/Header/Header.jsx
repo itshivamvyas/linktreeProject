@@ -73,7 +73,7 @@ function Header() {
             </svg>
           </li>
           <li className="text-center font-bold cursor-pointer bg-gradient-to-r from-sky-600 via-pink-600 to-sky-600 bg-clip-text text-transparent">
-            Your LinkTree
+            Your Friend Vivek Sager
           </li>
         </ul>
 
