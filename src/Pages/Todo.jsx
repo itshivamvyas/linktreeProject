@@ -2,7 +2,7 @@ import React from 'react'
 
 function Todo() {
   return (
-    <div className="flex flex-col gap-5 bg-white text-black p-10 rounded-3xl">
+    <div className="flex flex-col gap-5 bg-white text-black p-10 rounded-3xl mt-5">
             <div className="flex flex-row justify-between">
             <div className="flex flex-col gap-3">
               <div className="flex flex-row gap-3">

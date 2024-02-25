@@ -2,7 +2,8 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="flex flex-row justify-around bg-white min-h-32 items-center">
+    <div className="p-5 rounded-3xl bg-gray-300">
+    <div className="flex flex-row justify-around rounded-2xl bg-white min-h-32 items-center">
       <span className="font-bold">2024 Itshivamvyas. All rights reserved.</span>
 
       <p className="flex flex-row gap-16 list-none text-center font-bold">
@@ -16,6 +17,7 @@ function Footer() {
           Contact Us
         </li>
       </p>
+    </div>
     </div>
   );
 }
