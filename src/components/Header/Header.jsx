@@ -1,4 +1,10 @@
 import React from "react";
+import { IconHome } from "@tabler/icons-react";
+import { IconRobot } from "@tabler/icons-react";
+import { IconLink } from "@tabler/icons-react";
+import { IconLogin2 } from "@tabler/icons-react";
+import { IconUserPlus } from "@tabler/icons-react";
+import { IconLogout } from "@tabler/icons-react";
 
 function Header() {
   return (
@@ -78,26 +84,23 @@ function Header() {
         </ul>
 
         <ul className="flex flex-row p-2 gap-5 pe-5">
-          <li className="hover:bg-red-400 rounded-3xl p-2.5 min-w-24 text-center font-bold cursor-pointer">
-            Home
+          <li className="hover:bg-indigo-700 hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
+            <IconHome /> Home
           </li>
-          <li className="hover:bg-red-400 rounded-3xl p-2.5 min-w-24 text-center font-bold cursor-pointer">
-            About Us
+          <li className="hover:bg-indigo-700 hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
+            <IconRobot /> About Us
           </li>
-          <li className="hover:bg-red-400 rounded-3xl p-2.5 min-w-24 text-center font-bold cursor-pointer">
-            Links
+          <li className="hover:bg-indigo-700 hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
+            <IconLink /> Links
           </li>
-          <li className="hover:bg-red-400 rounded-3xl p-2.5 min-w-24 text-center font-bold cursor-pointer">
-            Themes
+          <li className="hover:bg-indigo-700 hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
+            <IconLogin2 /> Login
           </li>
-          <li className="hover:bg-red-400 rounded-3xl p-2.5 min-w-24 text-center font-bold cursor-pointer">
-            Login
+          <li className="hover:bg-indigo-700 hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
+            <IconUserPlus /> SignUp
           </li>
-          <li className="hover:bg-red-400 rounded-3xl p-2.5 min-w-24 text-center font-bold cursor-pointer">
-            SignUp
-          </li>
-          <li className="hover:bg-red-400 rounded-3xl p-2.5 min-w-24 text-center font-bold cursor-pointer">
-            Logout
+          <li className="hover:bg-indigo-700 hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
+            <IconLogout /> Logout
           </li>
         </ul>
       </div>

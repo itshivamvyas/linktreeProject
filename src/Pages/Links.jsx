@@ -5,8 +5,8 @@ function Links() {
   return (
     <div className="p-5">
       <div className="grid grid-cols-2">
-        <section className="flex-1">
-          <button className="flex justify-center items-center gap-2 p-3 bg-black rounded-full text-white font-bold w-full">
+        <section className="flex-1 p-10">
+          <button className="flex justify-center items-center gap-2 p-3 bg-indigo-800 rounded-full text-white font-bold w-full hover:bg-indigo-700">
             <svg
               width="22px"
               height="22px"
