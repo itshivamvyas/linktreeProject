@@ -29,16 +29,13 @@ function Links() {
           <Todo />
           <Todo />
           <Todo />
-          <Todo />
-          <Todo />
-          <Todo />
-          <Todo />
-          <Todo />
-          <Todo />
-          <Todo />
         </section>
 
-        <section className="flex-1">Preview Section</section>
+        <section className="flex-1">
+          <div className="flex fixed p-10">
+            <p>Preview Section Hai Bhai</p>
+          </div>
+        </section>
       </div>
     </div>
   );

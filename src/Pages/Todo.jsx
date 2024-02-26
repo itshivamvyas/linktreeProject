@@ -1,4 +1,9 @@
 import React from 'react'
+import {IconStar} from '@tabler/icons-react';
+import { IconExternalLink } from '@tabler/icons-react';
+import {IconEdit} from '@tabler/icons-react';
+import {IconShare} from '@tabler/icons-react';
+import {IconTrash} from '@tabler/icons-react';
 
 function Todo() {
   return (
@@ -6,17 +11,20 @@ function Todo() {
             <div className="flex flex-row justify-between">
             <div className="flex flex-col gap-3">
               <div className="flex flex-row gap-3">
-              <h1 className="font-bold">This Is Main Heading</h1>
-              <img src="" alt="Edit Button" />
+              <h1 className="font-bold">Your LinkTree</h1>
+              <IconEdit/>
+
               </div>
               <div className="flex flex-row gap-3">
-              <p className="font-semibold">This Is Link To Open A Website</p>
-              <img src="" alt="Edit Button" />
+              <p className="font-semibold">https://skvlinktree.vercel.app/</p>
+              <IconEdit/>
+
               </div>
             </div>
 
-            <div className="flex flex-row gap-3">
-              <img className="text-center" src="" alt="Share Button" />
+            <div className="flex flex-row gap-3 justify-center items-center">
+              <IconShare/>
+
               <label class="inline-flex items-center cursor-pointer">
                 <input
                   type="checkbox"
@@ -31,15 +39,12 @@ function Todo() {
 
             <div className="flex flex-row justify-between w-full">
               <div className="flex gap-2">
-                <img src="" alt="Logo1" />
-                <img src="" alt="Logo2" />
-                <img src="" alt="Logo3" />
-                <img src="" alt="Logo4" />
-                <img src="" alt="Logo5" />
+                <IconExternalLink/>
+                <IconStar/>
               </div>
 
               <div>
-                <img src="" alt="svg Icon delete" />
+                <IconTrash/>
               </div>
             </div>
           </div>
