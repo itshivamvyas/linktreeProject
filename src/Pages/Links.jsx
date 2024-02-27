@@ -4,10 +4,11 @@ import Preview from "../components/Preview Section/Preview";
 
 function Links() {
   return (
-    <div className="p-5">
-      <div className="grid grid-cols-2">
-        <section className="flex-1 p-10">
-          <button className="flex justify-center items-center gap-2 p-5 bg-indigo-800 rounded-full text-white font-bold w-full hover:bg-indigo-700 mb-14 sticky top-28 z-50">
+    <div className="pb-5">
+      <div className="grid grid-cols-10">
+        <section className="col-span-6 p-10">
+        <div className="bg-gray-100 pt-5 sticky top-[100px] mb-14 z-50 rounded-b-[32px]">
+          <button className="flex justify-center items-center gap-2 p-5 bg-indigo-800 rounded-full text-white font-bold w-full hover:bg-indigo-700 z-50">
             <svg
               width="22px"
               height="22px"
@@ -21,6 +22,7 @@ function Links() {
             </svg>
             Add Link
           </button>
+        </div>
 
           <Todo />
           <Todo />
