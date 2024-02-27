@@ -84,22 +84,22 @@ function Header() {
         </ul>
 
         <ul className="flex flex-row p-2 gap-5 pe-5">
-          <li className="hover:bg-indigo-700 hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
+          <li className="hover:bg-indigo-700 transition-colors hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
             <IconHome /> Home
           </li>
-          <li className="hover:bg-indigo-700 hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
+          <li className="hover:bg-indigo-700 transition-colors hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
             <IconRobot /> About Us
           </li>
-          <li className="hover:bg-indigo-700 hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
+          <li className="hover:bg-indigo-700 transition-colors hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
             <IconLink /> Links
           </li>
-          <li className="hover:bg-indigo-700 hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
+          <li className="hover:bg-indigo-700 transition-colors hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
             <IconLogin2 /> Login
           </li>
-          <li className="hover:bg-indigo-700 hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
+          <li className="hover:bg-indigo-700 transition-colors hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
             <IconUserPlus /> SignUp
           </li>
-          <li className="hover:bg-indigo-700 hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
+          <li className="hover:bg-indigo-700 transition-colors hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
             <IconLogout /> Logout
           </li>
         </ul>
