@@ -8,7 +8,7 @@ import { IconLogout } from "@tabler/icons-react";
 
 function Header() {
   return (
-    <div className="p-4 rounded-2xl sticky top-0 bg-gray-300 z-50">
+    <div className="p-4 sticky top-0 bg-gray-300 z-50">
       <div className="flex flex-row justify-between bg-white p-1 rounded-full w-full sticky top-3">
         <ul className="flex flex-row p-2 gap-3 text-xl text-center items-center ps-8">
           <li className="text-center items-center justify-center cursor-pointer">
@@ -16,7 +16,7 @@ function Header() {
               width="40px"
               height="40px"
               viewBox="0 0 1024 1024"
-              class="icon"
+              className="icon"
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
             >
