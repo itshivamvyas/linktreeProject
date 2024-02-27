@@ -1,4 +1,7 @@
 import React from "react";
+import { IconHome } from "@tabler/icons-react";
+import { IconRobot } from "@tabler/icons-react";
+import { IconPhoneCall } from "@tabler/icons-react";
 
 function Footer() {
   return (
@@ -9,14 +12,14 @@ function Footer() {
         </span>
 
         <p className="flex flex-row gap-16 list-none text-center font-bold">
-          <li className="hover:bg-red-400 cursor-pointer rounded-3xl p-2.5 min-w-24 text-center font-bold">
-            Home
+          <li className="hover:bg-indigo-700 hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
+            <IconHome /> Home
           </li>
-          <li className="hover:bg-red-400 cursor-pointer rounded-3xl p-2.5 min-w-24 text-center font-bold">
-            About Us
+          <li className="hover:bg-indigo-700 hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
+            <IconRobot /> About Us
           </li>
-          <li className="hover:bg-red-400 cursor-pointer rounded-3xl p-2.5 min-w-24 text-center font-bold">
-            Contact Us
+          <li className="hover:bg-indigo-700 hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
+            <IconPhoneCall /> Contact Us
           </li>
         </p>
       </div>
