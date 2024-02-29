@@ -20,18 +20,18 @@ function Todo() {
         <div className="flex flex-col gap-3">
           <div className="flex gap-3">
             <h1 className="font-semibold text-stone-800">Your LinkTree</h1>
-            <IconEdit className="text-stone-600" size={22} />
           </div>
           <div className="flex gap-3">
             <p className="text-stone-600 tracking-wide">
               https://skvlinktree.vercel.app/
             </p>
-            <IconEdit className="text-stone-600" size={22} />
           </div>
         </div>
 
         <div className="flex flex-row gap-3 justify-center items-center">
+          <div className="hover:bg-slate-200 p-3 rounded-full cursor-pointer">
           <IconShare size={22} className="text-stone-600" />
+          </div>
 
           <label className="inline-flex items-center cursor-pointer">
             <input type="checkbox" value="" className="sr-only peer" />
@@ -41,12 +41,19 @@ function Todo() {
       </div>
 
       <div className="flex flex-row justify-between w-full text-stone-600">
-        <div className="flex gap-2">
+        <div className="flex gap-6 text-stone-600">
+          <div className="hover:bg-slate-200 p-3 rounded-full cursor-pointer">
+          <IconEdit size={22} />
+          </div>
+          <div className="hover:bg-slate-200 p-3 rounded-full cursor-pointer">
           <IconExternalLink size={22} />
+          </div>
+          <div className="hover:bg-slate-200 p-3 rounded-full cursor-pointer">
           <IconStar size={22} />
+          </div>
         </div>
 
-        <div>
+        <div className="hover:bg-red-200 p-3 rounded-full cursor-pointer">
           <IconTrash className="text-red-500" size={22} />
         </div>
       </div>

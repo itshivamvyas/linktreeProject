@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  IconHome,
   IconBrandLinktree,
+  IconPhoneCall,
   IconRobot,
   IconLink,
   IconLogin2,
@@ -22,15 +22,15 @@ function Header() {
           </li>
         </ul>
 
-        <ul className="flex flex-row p-2 gap-5 pe-5">
+        <ul className="flex flex-row p-2 gap-5 pe-5 items-center">
           <li className="hover:bg-indigo-700 transition-colors hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
-            <IconHome /> Home
+            <IconLink /> Links
           </li>
           <li className="hover:bg-indigo-700 transition-colors hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
             <IconRobot /> About Us
           </li>
-          <li className="hover:bg-indigo-700 transition-colors hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
-            <IconLink /> Links
+          <li className="hover:bg-indigo-700 hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
+            <IconPhoneCall /> Contact Us
           </li>
           <li className="hover:bg-indigo-700 transition-colors hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
             <IconLogin2 /> Login
@@ -40,6 +40,12 @@ function Header() {
           </li>
           <li className="hover:bg-indigo-700 transition-colors hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
             <IconLogout /> Logout
+          </li>
+          <li className="cursor-pointer flex justify-center items-center font-bold text-xl">
+            <h1>Hi, Shivam Vyas</h1>
+          </li>
+          <li className="cursor-pointer">
+            <img src="./Shivam.jpg" alt=""  width={50} height={50} className="rounded-full hover:scale-110 transition-transform border-4"/>
           </li>
         </ul>
       </div>
