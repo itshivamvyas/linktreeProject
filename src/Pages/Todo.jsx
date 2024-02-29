@@ -1,8 +1,10 @@
-import { IconStar } from "@tabler/icons-react";
-import { IconExternalLink } from "@tabler/icons-react";
-import { IconEdit } from "@tabler/icons-react";
-import { IconShare } from "@tabler/icons-react";
-import { IconTrash } from "@tabler/icons-react";
+import {
+  IconStar,
+  IconTrash,
+  IconExternalLink,
+  IconEdit,
+  IconShare,
+} from "@tabler/icons-react";
 import { useState } from "react";
 
 function Todo() {

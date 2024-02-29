@@ -1,7 +1,5 @@
 import React from "react";
-import { IconHome } from "@tabler/icons-react";
-import { IconRobot } from "@tabler/icons-react";
-import { IconPhoneCall } from "@tabler/icons-react";
+import { IconHome, IconPhoneCall, IconRobot } from "@tabler/icons-react";
 
 function Footer() {
   return (
