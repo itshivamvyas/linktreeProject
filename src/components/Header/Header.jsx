@@ -17,7 +17,7 @@ function Header() {
           <li className="text-center items-center justify-center font-bold cursor-pointer">
             <IconBrandLinktree />
           </li>
-          <li className="text-center font-bold cursor-pointer bg-gradient-to-r from-sky-600 via-pink-600 to-sky-600 bg-clip-text text-transparent">
+          <li className="text-center font-bold cursor-pointer bg-gradient-to-r from-sky-600 via-pink-600 to-sky-600 bg-clip-text text-transparent font-pacifico">
             Your LinkTree
           </li>
         </ul>
@@ -41,7 +41,7 @@ function Header() {
           <li className="hover:bg-indigo-700 transition-colors hover:text-white rounded-3xl p-2.5 min-w-28 text-center font-bold cursor-pointer flex flex-row gap-2">
             <IconLogout /> Logout
           </li>
-          <li className="cursor-pointer flex justify-center items-center font-bold text-xl">
+          <li className="cursor-pointer flex justify-center items-center font-semibold text-xl font-pacifico">
             <h1>Hi, Shivam Vyas</h1>
           </li>
           <li className="cursor-pointer">

@@ -29,9 +29,7 @@ function Todo() {
         </div>
 
         <div className="flex flex-row gap-3 justify-center items-center">
-          <div className="hover:bg-slate-200 p-3 rounded-full cursor-pointer">
-          <IconShare size={22} className="text-stone-600" />
-          </div>
+          <Icon icon={IconShare}/>
 
           <label className="inline-flex items-center cursor-pointer">
             <input type="checkbox" value="" className="sr-only peer" />
@@ -41,24 +39,30 @@ function Todo() {
       </div>
 
       <div className="flex flex-row justify-between w-full text-stone-600">
-        <div className="flex gap-6 text-stone-600">
-          <div className="hover:bg-slate-200 p-3 rounded-full cursor-pointer">
-          <IconEdit size={22} />
-          </div>
-          <div className="hover:bg-slate-200 p-3 rounded-full cursor-pointer">
-          <IconExternalLink size={22} />
-          </div>
-          <div className="hover:bg-slate-200 p-3 rounded-full cursor-pointer">
-          <IconStar size={22} />
-          </div>
+        <div className="flex gap-6">
+          <Icon icon={IconEdit} />
+          
+         <Icon icon={IconExternalLink} />
+         <Icon icon={IconStar} />
         </div>
 
-        <div className="hover:bg-red-200 p-3 rounded-full cursor-pointer">
-          <IconTrash className="text-red-500" size={22} />
-        </div>
+       <Icon icon={IconTrash} isDanger={true}/>
       </div>
     </div>
   );
+}
+
+function Icon({icon, isDanger}){
+  const I = icon;
+
+
+  const dangerClassName = isDanger ? "hover:bg-red-200 text-red-500" : "hover:bg-slate-200 text-stone-600";;
+
+  return (
+    <div className= {`${dangerClassName} p-2 rounded-full cursor-pointer active:translate-y-0.5`}>
+     <I size={22}/>
+    </div>
+  )
 }
 
 export default Todo;
