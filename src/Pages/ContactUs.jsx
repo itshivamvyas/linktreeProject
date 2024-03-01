@@ -5,7 +5,7 @@ function ContactUs() {
     <div>
       <div className="mb-2 p-12">
         <div className="bg-white p-7 flex flex-col gap-6 rounded-3xl">
-        <div className="p-4 text-3xl text-center font-pacifico">Contact Us</div>
+        <div className="p-4 text-3xl text-center">Contact Us</div>
         <div className="flex flex-row gap-80">
         <div><img src="./contactus.jpg" alt="" className="w-[500px] h-[300px] rounded-3xl"/></div>
         <div className="flex flex-col justify-center items-start gap-4">

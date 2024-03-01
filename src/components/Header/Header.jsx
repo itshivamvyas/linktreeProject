@@ -83,7 +83,7 @@ function Header() {
               />
             </svg>
           </li>
-          <li className="text-center font-bold cursor-pointer bg-gradient-to-r from-sky-600 via-pink-600 to-sky-600 bg-clip-text text-transparent font-pacifico text-lg">
+          <li className="text-center font-bold cursor-pointer bg-gradient-to-r from-sky-600 via-pink-600 to-sky-600 bg-clip-text text-transparent text-lg">
             Your LinkTree
           </li>
         </ul>
@@ -102,7 +102,7 @@ function Header() {
           <li className="hover:bg-indigo-700 transition-colors hover:text-white rounded-3xl p-2 min-w-32 font-bold cursor-pointer flex flex-row gap-1 text-sm justify-center items-center">
             <IconUserPlus /> SignUp
           </li>
-          <li className="cursor-pointer flex justify-center items-center font-semibold text-xl font-pacifico">
+          <li className="cursor-pointer flex justify-center items-center font-semibold text-xl">
             <h1>Hi, Shivam Vyas</h1>
           </li>
           <li className="cursor-pointer">

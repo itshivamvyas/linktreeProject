@@ -8,7 +8,7 @@ function AboutUs() {
     <div>
       <div className="mb-2 p-6">
         <div className="bg-white p-5 flex flex-col gap-3 rounded-3xl">
-          <div className="p-4 text-3xl text-center font-pacifico">About Us</div>
+          <div className="p-4 text-3xl text-center">About Us</div>
           <div>
             <span className="font-semibold text-xl">
               Linktree: Your All-in-One Bio Link
