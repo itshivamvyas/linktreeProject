@@ -2,8 +2,12 @@ import React from "react";
 import Todo from "./Todo";
 import Preview from "../components/Preview Section/Preview";
 import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
+
+
 
 function Links() {
+
   const onAddClick = () => {
     window.scrollTo({
       top: 75,
@@ -13,12 +17,11 @@ function Links() {
 
   return (
     <>
-      <Header />
       <div className="pb-5">
         <div className="grid grid-cols-10">
           <div className="col-span-6">
             <section className="p-10 max-w-2xl mx-auto">
-              <div className="bg-gray-200 pt-5 sticky top-[106px] mb-14 z-50 rounded-b-[32px]">
+              <div className="bg-gray-200 pt-5 sticky top-[93px] mb-14 z-50 rounded-b-[32px]">
                 <button onClick={onAddClick} id="add" className="flex justify-center items-center gap-2 p-5 bg-indigo-800 rounded-full text-white font-bold w-full hover:bg-indigo-700 z-50">
                   <svg
                     width="22px"

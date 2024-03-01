@@ -15,16 +15,16 @@ function Preview() {
                 <h1 className="font-bold">@Itshivamvyas</h1>
               </div>
               <div className="flex flex-col gap-3 cursor-pointer">
-                <div className="bg-white p-3 text-center text-xs font-bold hover:scale-105 transition-transform">
+                <div className="bg-white p-3 text-center text-xs font-bold hover:scale-105 transition-transform rounded-xl">
                   Your LinkTree
                 </div>
-                <div className="bg-white p-3 text-center text-xs font-bold hover:scale-105 transition-transform">
+                <div className="bg-white p-3 text-center text-xs font-bold hover:scale-105 transition-transform rounded-xl">
                   Shivam Kumar
                 </div>
-                <div className="bg-white p-3 text-center text-xs font-bold hover:scale-105 transition-transform">
+                <div className="bg-white p-3 text-center text-xs font-bold hover:scale-105 transition-transform rounded-xl">
                   Your LinkTree
                 </div>
-                <div className="bg-white p-3 text-center text-xs font-bold hover:scale-105 transition-transform">
+                <div className="bg-white p-3 text-center text-xs font-bold hover:scale-105 transition-transform rounded-xl">
                   Your LinkTree
                 </div>
               </div>

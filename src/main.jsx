@@ -10,11 +10,7 @@ import ContactUs from "./Pages/ContactUs.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Links/>}/>
-      <Route path="/about-us" element={<AboutUs/>}/>
-      <Route path="/about-us" element={<ContactUs/>}/>
-    </Routes>
+    <App/>
     </BrowserRouter>
   </React.StrictMode>
 );
