@@ -103,7 +103,7 @@ function Header() {
             <IconUserPlus /> SignUp
           </li>
           <li className="cursor-pointer flex justify-center items-center font-semibold text-xl">
-            <h1>Hi, Shivam Vyas</h1>
+            <span className="bg-gradient-to-r from-sky-600 via-pink-600 to-sky-600 bg-clip-text text-transparent font-bold">Hi, Shivam Vyas</span>
           </li>
           <li className="cursor-pointer">
             <img

@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 function Menu() {
   return (
-    <div className="fixed right-4 z-50 top-[93px] shadow-xl">
+    <div className="fixed right-4 z-50 top-[93px] shadow-2xl shadow-indigo-300">
       <div className="float-right bg-white rounded-lg">
         <ul>
           <li className="flex flex-row gap-3 p-3 cursor-pointer min-w-60 font-semibold hover:bg-indigo-700 rounded-t-lg hover:text-white active:translate-y-0.5">

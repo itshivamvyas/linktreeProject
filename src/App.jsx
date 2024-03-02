@@ -1,17 +1,20 @@
 import React from "react";
 import Links from "./Pages/Links";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import AboutUs from "./Pages/AboutUs";
 import ContactUs from "./Pages/ContactUs";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import Home from "./components/Home/Home";
+import SignUp from "./Pages/SignUp";
 
 function App() {
-  const isAuth = true;
+  const isAuth = false;
 
   return (
     <Routes>
-      {!isAuth && <Route path="/" element={"Hello Shivam"} />}
+      {!isAuth && <Route path="/" element={<Home/>} />}
+      {!isAuth && <Route path="/signup" element={<SignUp/>} />}
       {isAuth && (
         <Route
           path="/*"
@@ -19,10 +22,10 @@ function App() {
             <>
               <Header />
               <Routes>
-                <Route path="home" element={<Links />} />
+                <Route path="links" element={<Links />} />
                 <Route path="about-us" element={<AboutUs />} />
                 <Route path="contact-us" element={<ContactUs />} />
-                <Route path="*" element={<Navigate to="/home" />} />
+                <Route path="*" element={<Navigate to="/links" />} />
               </Routes>
               <Footer />
             </>
