@@ -9,7 +9,7 @@ import Home from "./components/Home/Home";
 import SignUp from "./Pages/SignUp";
 
 function App() {
-  const isAuth = false;
+  const isAuth = true;
 
   return (
     <Routes>
