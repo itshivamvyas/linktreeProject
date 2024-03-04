@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div className='flex flex-col items-center mb-3 text-sm'>
+    <div className='flex flex-col items-center mb-3 text-sm font-semibold'>
       <div>2024 Itshivamvyas. All rights reserved.</div>
       <div>Created By Shivam Kumar</div>
     </div>
