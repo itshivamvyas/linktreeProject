@@ -1,7 +1,7 @@
 function Preview() {
   return (
     <div className="col-span-4 flex justify-center p-10">
-      <div className="fixed">
+      <div className="fixed select-none">
         <div className="relative">
           <img src="./mockup.png" alt="" className="h-[calc(100vh-170px)]" />
           <div className="absolute inset-0 px-8 top-12 h-[calc(100vh-240px)] overflow-y-auto no-scrollbar">
