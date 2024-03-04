@@ -7,6 +7,7 @@ function Links() {
   const [linksData, setLinksData] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
+
   const closeModal = () => {
     setShowModal(false);
   };
@@ -20,6 +21,7 @@ function Links() {
       },
     ]);
   };
+
 
   const onAddClick = () => {
     window.scrollTo({
@@ -63,8 +65,10 @@ function Links() {
 
               {LinkComps}
 
-              {showModal && <Modal closeModal={closeModal} addButton={setData} />}
-
+              {showModal && (
+                <Modal closeModal={closeModal} setData={setData} />
+              )}
+              
             </section>
           </div>
 

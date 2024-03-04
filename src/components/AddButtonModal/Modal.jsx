@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IconX } from "@tabler/icons-react";
 
-function Modal({ closeModal, addButton }) {
+function Modal({ closeModal, setData }) {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
 
@@ -59,10 +59,8 @@ function Modal({ closeModal, addButton }) {
         </div>
 
         <div
-          className="flex justify-center items-center gap-2 p-2 bg-black rounded-lg text-white font-bold w-full hover:bg-opacity-85 shadow-lg shadow-black/40 z-50 transition-transform active:translate-y-0.5 mt-4"
-          onClick={addButton()}
-        >
-          <button className="select-none">Add Link</button>
+          className="flex justify-center items-center gap-2 p-2 bg-black rounded-lg text-white font-bold w-full hover:bg-opacity-85 shadow-lg shadow-black/40 z-50 transition-transform active:translate-y-0.5 mt-4">
+          <button className="select-none" onClick={setData}>Add Link</button>
         </div>
       </div>
     </div>
