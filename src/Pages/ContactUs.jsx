@@ -6,7 +6,7 @@ function ContactUs() {
       <div className="mb-2 p-12">
         <div className="bg-white p-7 flex flex-col gap-6 rounded-3xl">
           <div className="p-4 text-3xl text-center font-bold border-b-2 border-gray-200 shadow-lg">
-            <span className="bg-gradient-to-r from-sky-600 via-pink-600 to-sky-600 bg-clip-text text-transparent">
+            <span>
               Contact Us
             </span>
           </div>

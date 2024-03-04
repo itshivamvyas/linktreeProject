@@ -4,7 +4,7 @@ function AboutUs() {
   return (
     <div className="p-5">
       <div className="p-4 sticky top-[112px] text-3xl text-center shadow-lg shadow-indigo-300 font-bold bg-white rounded-full">
-        <span className="bg-gradient-to-r from-sky-600 via-pink-600 to-sky-600 bg-clip-text text-transparent">
+        <span>
           About Us
         </span>
       </div>

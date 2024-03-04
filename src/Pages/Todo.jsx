@@ -7,7 +7,7 @@ import {
 } from "@tabler/icons-react";
 import { useState } from "react";
 
-function Todo() {
+function Todo({title, url}) {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = () => {
@@ -19,17 +19,17 @@ function Todo() {
       <div className="flex flex-row justify-between items-start">
         <div className="flex flex-col gap-3">
           <div className="flex gap-3">
-            <h1 className="font-semibold text-stone-800">Your LinkTree</h1>
+            <h1 className="font-semibold text-stone-800">{title}</h1>
           </div>
           <div className="flex gap-3">
             <p className="text-stone-600 tracking-wide">
-              https://skvlinktree.vercel.app/
+              {url}
             </p>
           </div>
         </div>
 
         <div className="flex flex-row gap-3 justify-center items-center">
-          <Icon icon={IconShare}/>
+          <Icon icon={IconShare} />
 
           <label className="inline-flex items-center cursor-pointer">
             <input type="checkbox" value="" className="sr-only peer" />
@@ -41,28 +41,31 @@ function Todo() {
       <div className="flex flex-row justify-between w-full text-stone-600">
         <div className="flex gap-6">
           <Icon icon={IconEdit} />
-          
-         <Icon icon={IconExternalLink} />
-         <Icon icon={IconStar} />
+
+          <Icon icon={IconExternalLink} />
+          <Icon icon={IconStar} />
         </div>
 
-       <Icon icon={IconTrash} isDanger={true}/>
+        <Icon icon={IconTrash} isDanger={true} />
       </div>
     </div>
   );
 }
 
-function Icon({icon, isDanger}){
+function Icon({ icon, isDanger }) {
   const I = icon;
 
-
-  const dangerClassName = isDanger ? "hover:bg-red-200 text-red-500" : "hover:bg-slate-200 text-stone-600";;
+  const dangerClassName = isDanger
+    ? "hover:bg-red-200 text-red-500"
+    : "hover:bg-slate-200 text-stone-600";
 
   return (
-    <div className= {`${dangerClassName} p-2 rounded-full cursor-pointer active:translate-y-0.5`}>
-     <I size={22}/>
+    <div
+      className={`${dangerClassName} p-2 rounded-full cursor-pointer active:translate-y-0.5`}
+    >
+      <I size={22} />
     </div>
-  )
+  );
 }
 
 export default Todo;
