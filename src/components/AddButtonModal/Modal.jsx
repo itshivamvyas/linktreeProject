@@ -59,8 +59,8 @@ function Modal({ closeModal, setData }) {
         </div>
 
         <div
-          className="flex justify-center items-center gap-2 p-2 bg-black rounded-lg text-white font-bold w-full hover:bg-opacity-85 shadow-lg shadow-black/40 z-50 transition-transform active:translate-y-0.5 mt-4">
-          <button className="select-none" onClick={setData}>Add Link</button>
+          className="flex justify-center items-center gap-2 p-2 bg-black rounded-lg text-white font-bold w-full hover:bg-opacity-85 shadow-lg shadow-black/40 z-50 transition-transform active:translate-y-0.5 mt-4" onClick={setData}>
+          <button className="select-none">Add Link</button>
         </div>
       </div>
     </div>
