@@ -11,7 +11,7 @@ import LogIn from "./Pages/LogIn";
 import Loginbyphone from "./Pages/Loginbyphone";
 
 function App() {
-  const isAuth = false;
+  const isAuth = true;
 
   return (
     <Routes>
