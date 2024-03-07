@@ -7,14 +7,18 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home";
 import SignUp from "./Pages/SignUp";
+import LogIn from "./Pages/LogIn";
+import Loginbyphone from "./Pages/Loginbyphone";
 
 function App() {
-  const isAuth = true;
+  const isAuth = false;
 
   return (
     <Routes>
       {!isAuth && <Route path="/" element={<Home/>} />}
       {!isAuth && <Route path="/signup" element={<SignUp/>} />}
+      {!isAuth && <Route path="/login" element={<LogIn/>} />}
+      {!isAuth && <Route path="/loginbyphone" element={<Loginbyphone/>} />}
       {isAuth && (
         <Route
           path="/*"
