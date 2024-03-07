@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Todo from "./Todo";
 import Preview from "../components/Preview Section/Preview";
 import Modal from "../components/AddButtonModal/Modal";
+import {IconGrowth} from "@tabler/icons-react";
 
 function Links() {
   const [linksData, setLinksData] = useState([]);
@@ -62,6 +63,13 @@ function Links() {
                   Add Link
                 </button>
               </div>
+
+
+              {LinkComps && (
+                <div className="fixed -z-50">
+                <IconGrowth width={600} height={400} className="opacity-10"/>
+                </div>
+              )}
 
               {LinkComps}
 

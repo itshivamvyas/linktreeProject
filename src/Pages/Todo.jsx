@@ -15,7 +15,7 @@ function Todo({title, url}) {
   };
 
   return (
-    <div className="flex flex-col gap-6 bg-white p-8 rounded-3xl mt-5">
+    <div className="flex flex-col gap-6 bg-white p-8 rounded-3xl mt-5 hover:scale-105 transition-transform active:translate-y-0.5">
       <div className="flex flex-row justify-between items-start">
         <div className="flex flex-col gap-3">
           <div className="flex gap-3">
