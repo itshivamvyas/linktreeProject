@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   IconPhoneCall,
   IconRobot,
@@ -7,8 +7,11 @@ import {
   IconLogout,
 } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
+import { Context } from "../../App";
 
 function Menu({onclickHandler}) {
+const {logoutUser} = useContext(Context);
+
   return (
     <div className="fixed right-4 z-50 top-[93px] shadow-2xl shadow-indigo-300 select-none">
       <div className="float-right bg-white rounded-lg">
@@ -32,7 +35,8 @@ function Menu({onclickHandler}) {
               Contact Us
             </li>
           </Link>
-          <li className="flex flex-row gap-3 p-3 cursor-pointer min-w-60 font-semibold hover:bg-black rounded-b-lg hover:text-white active:translate-y-0.5" onClick={onclickHandler}>
+          
+          <li className="flex flex-row gap-3 p-3 cursor-pointer min-w-60 font-semibold hover:bg-black rounded-b-lg hover:text-white active:translate-y-0.5" onClick={logoutUser}>
             <IconLogout /> Logout
           </li>
         </ul>
