@@ -9,7 +9,6 @@ function LogIn() {
         <div>Log in To Your LinkTree</div>
         <input type="email" placeholder='Email Or Username'/>
         <input type="text" placeholder='Password'/>
-        <div><p>Forgot Username?</p><p>Forgot Password?</p></div>
         <button className="flex justify-center items-center select-none gap-2 p-5 bg-black rounded-full text-white font-bold w-full hover:bg-opacity-85 shadow-lg shadow-black/40 z-50 transition-transform active:translate-y-0.5"> Log In </button>
         <p>OR</p>
         <button className="flex justify-center items-center select-none gap-2 p-5 bg-white rounded-full font-bold w-full hover:bg-opacity-85 shadow-lg shadow-black/40 z-50 transition-transform active:translate-y-0.5"> Login With Google </button>

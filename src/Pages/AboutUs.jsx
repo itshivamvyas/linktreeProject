@@ -2,6 +2,8 @@ import React from "react";
 
 function AboutUs() {
   return (
+    <>
+    <Home/>
     <div className="p-5">
       <div className="p-4 sticky top-[112px] text-3xl text-center shadow-lg shadow-indigo-300 font-bold bg-white rounded-full">
         <span>
@@ -76,6 +78,7 @@ function AboutUs() {
 
       </div>
     </div>
+    </>
   );
 }
 

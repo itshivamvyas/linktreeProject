@@ -42,7 +42,9 @@ function Todo({title, url}) {
         <div className="flex gap-6">
           <Icon icon={IconEdit} />
 
+<a href={url} target="_blank">
           <Icon icon={IconExternalLink} />
+          </a>
           <Icon icon={IconStar} />
         </div>
 

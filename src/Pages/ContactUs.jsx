@@ -2,6 +2,7 @@ import React from "react";
 
 function ContactUs() {
   return (
+    <>
     <div>
       <div className="mb-2 p-12">
         <div className="bg-white p-7 flex flex-col gap-6 rounded-3xl">
@@ -45,6 +46,7 @@ function ContactUs() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
