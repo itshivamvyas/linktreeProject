@@ -1,7 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState} from "react";
 import { IconX } from "@tabler/icons-react";
 
 function Modal({ closeModal, setData }) {
+
+  const [titleInput, setTitleInput] = useState("");
+  const [urlInput, setUrlInput] = useState("");
+
+  const titleHandler = (e) => {
+    setTitleInput(e.target.value);
+  };
+
+  const urlHandler = (e) => {
+    setUrlInput(e.target.value);
+  };
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -35,6 +46,8 @@ function Modal({ closeModal, setData }) {
                   id="title"
                   placeholder="Enter Title"
                   className="py-2 px-3 outline-none bg-gray-100 rounded-lg w-full focus:bg-gray-50 focus:outline-black"
+                  value={titleInput}
+                  onChange={titleHandler}
                   required
                 />
               </label>
@@ -49,6 +62,8 @@ function Modal({ closeModal, setData }) {
                   id="url"
                   placeholder="Enter URL"
                   className="py-2 px-3 outline-none bg-gray-100 rounded-lg w-full focus:bg-gray-50 focus:outline-black"
+                  value={urlInput}
+                  onChange={urlHandler}
                   required
                 />
               </label>
@@ -59,7 +74,7 @@ function Modal({ closeModal, setData }) {
         <div
           className="flex justify-center items-center gap-2 p-2 bg-black rounded-lg text-white font-bold w-full hover:bg-opacity-85 shadow-lg shadow-black/40 z-50 transition-transform active:translate-y-0.5 mt-4" onClick={()=>{
             closeModal();
-            setData();
+            setData(titleInput, urlInput);
           }}>
           <button className="select-none">Add Link</button>
         </div>
