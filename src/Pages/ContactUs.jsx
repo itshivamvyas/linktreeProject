@@ -1,12 +1,13 @@
-import React from "react";
+import Header from "../components/Header/Header";
 
 function ContactUs() {
   return (
     <>
+    <Header/>
     <div>
       <div className="mb-2 p-12">
-        <div className="bg-white p-7 flex flex-col gap-6 rounded-3xl">
-          <div className="p-4 text-3xl text-center font-bold border-b-2 border-gray-200 shadow-lg">
+        <div className="bg-white p-7 flex flex-col gap-6 rounded-3xl shadow-lg shadow-indigo-300">
+          <div className="p-4 text-3xl text-center font-bold border-b-2 border-gray-200">
             <span>
               Contact Us
             </span>
