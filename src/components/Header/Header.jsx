@@ -15,12 +15,12 @@ function Header() {
       {openMenu && <Menu onclickHandler={onclickHandler}/>}
       <div className="p-4 sticky top-0 bg-gray-300 z-50 select-none">
         <div className="flex flex-row justify-between bg-white rounded-full w-full sticky top-3">
-          <ul className="flex flex-row p-2 gap-2 text-xl text-center items-center ps-8">
+          <ul className="flex flex-row p-2 gap-1 text-xl text-center items-center ps-8">
+            <li className="text-center font-bold cursor-pointer text-lg">
+            MyLinkSet
+            </li>
             <li className="text-center items-center justify-center font-bold cursor-pointer text-indigo-700">
               <IconGrowth className="text-black" />
-            </li>
-            <li className="text-center font-bold cursor-pointer text-lg">
-              Your LinkTree
             </li>
           </ul>
 
