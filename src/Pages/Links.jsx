@@ -3,9 +3,11 @@ import Todo from "./Todo";
 import Preview from "../components/Preview Section/Preview";
 import Modal from "../components/AddButtonModal/Modal";
 import {IconGrowth} from "@tabler/icons-react";
+import Header from "../components/Header/Header";
+import { useAppContext } from "../App";
 
 function Links() {
-  const [linksData, setLinksData] = useState([]);
+  const {linksData, setLinksData} = useAppContext();
   const [showModal, setShowModal] = useState(false);
 
 
@@ -13,12 +15,12 @@ function Links() {
     setShowModal(false);
   };
 
-  const setData = () => {
+  const setData = (title, url) => {
     setLinksData([
       ...linksData,
       {
-        title: `Title ${linksData.length + 1}`,
-        url: `https://example.com/${linksData.length + 1}`,
+        title,
+        url,
       },
     ]);
   };
@@ -34,12 +36,14 @@ function Links() {
   };
 
   const LinkComps = linksData.map((link) => (
-    <Todo key={link.title} title={link.title} url={link.url} />
+    <Todo key={link.title} title={link.title} url={link.url}/>
   ));
 
   return (
+    <>
+    <Header/>
     <div>
-      <div className="min-h-[calc(100vh-105px)]">
+      <div className="min-h-[calc(100vh-20vh)]">
         <div className="grid grid-cols-10">
           <div className="col-span-6">
             <section className="p-10 max-w-2xl mx-auto">
@@ -65,11 +69,10 @@ function Links() {
               </div>
 
 
-              {LinkComps && (
-                <div className="fixed -z-50">
-                <IconGrowth width={600} height={400} className="opacity-10"/>
-                </div>
-              )}
+              {linksData.length === 0 && <div className="fixed -z-50">
+                <IconGrowth width={600} height={400} className="opacity-5"/>
+                </div>}
+             
 
               {LinkComps}
 
@@ -84,6 +87,7 @@ function Links() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

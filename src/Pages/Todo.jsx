@@ -6,25 +6,29 @@ import {
   IconShare,
 } from "@tabler/icons-react";
 import { useState } from "react";
+import { useAppContext } from "../App";
 
-function Todo({title, url}) {
+function Todo({ title, url }) {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
 
+  const deleteTodo = () => {
+    const newTodos = linksData.filter((todo) => todo.title !== title);
+    setLinksData(newTodos);
+  };
+
   return (
-    <div className="flex flex-col gap-6 bg-white p-8 rounded-3xl mt-5 hover:scale-105 transition-transform active:translate-y-0.5">
+    <div className="flex flex-col gap-6 bg-white p-8 rounded-3xl mt-5 active:translate-y-0.5">
       <div className="flex flex-row justify-between items-start">
         <div className="flex flex-col gap-3">
           <div className="flex gap-3">
             <h1 className="font-semibold text-stone-800">{title}</h1>
           </div>
           <div className="flex gap-3">
-            <p className="text-stone-600 tracking-wide">
-              {url}
-            </p>
+            <p className="text-stone-600 tracking-wide">{url}</p>
           </div>
         </div>
 
@@ -42,13 +46,13 @@ function Todo({title, url}) {
         <div className="flex gap-6">
           <Icon icon={IconEdit} />
 
-<a href={url} target="_blank">
-          <Icon icon={IconExternalLink} />
+          <a href={url} target="_blank">
+            <Icon icon={IconExternalLink} />
           </a>
           <Icon icon={IconStar} />
         </div>
 
-        <Icon icon={IconTrash} isDanger={true} />
+        <Icon icon={IconTrash} isDanger={true} onclick={deleteTodo} />
       </div>
     </div>
   );
