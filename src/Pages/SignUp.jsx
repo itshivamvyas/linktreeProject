@@ -1,20 +1,68 @@
 import React from "react";
-import {IconGrowth} from "@tabler/icons-react";
+import { Link } from "react-router-dom";
+import {IconBrandGoogleFilled} from "@tabler/icons-react";
 
 function SignUp() {
   return (
-    <div className="bg-white h-screen w-screen flex items-center justify-center">
-      <div>
-        <div className="text-3xl">Welcome To Your LinkTree <IconGrowth className="text-black" /></div>
-        <div>Join LinkTree Now For Free!</div>
-        <input type="email" />
-        <input type="text" />
-        <button className="flex justify-center items-center select-none gap-2 p-5 bg-black rounded-full text-white font-bold w-full hover:bg-opacity-85 shadow-lg shadow-black/40 z-50 transition-transform active:translate-y-0.5"> Create Account </button>
-        <span>By clicking Create account, you agree to Linktree's Terms and Conditions and confirm you have read our Privacy Notice. You may receive offers, news and updates from us.</span>
-        <p>OR</p>
-        <button className="flex justify-center items-center select-none gap-2 p-5 bg-white rounded-full font-bold w-full hover:bg-opacity-85 shadow-lg shadow-black/40 z-50 transition-transform active:translate-y-0.5"> SignUp With Google </button>
-        <div>Already have an account? Log in</div>
-        <p>This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.</p>
+    <div className="bg-emerald-200 h-screen w-screen flex flex-col items-center justify-center">
+      <div className="flex flex-col justify-center items-center gap-10">
+        <div className="flex flex-col justify-center items-center gap-3">
+          <div className="text-5xl font-extrabold text-emerald-900">
+            Welcome To MyLinkSet
+          </div>
+          <div className="text-xl text-emerald-900">
+            Join MyLinkSet Now For Free!
+          </div>
+        </div>
+
+        <div className="flex flex-col justify-center items-center gap-3 w-full">
+          <input
+            type="email"
+            placeholder="Email"
+            className="p-3 w-full rounded-lg bg-white"
+          />
+
+          <div className="flex items-center bg-white rounded-lg p-3 w-full">
+            <p className="">mylinkset.vercel.app/</p>
+            <input
+              type="text"
+              placeholder="Username"
+              className="w-full rounded-lg bg-transparent outline-none"
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col justify-center items-center gap-3 w-full">
+          <button className="flex justify-center bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5">
+          Create Account
+          </button>
+          <p className="text-emerald-900">By clicking Create account, you agree to MyLinkSet Terms and Conditions and confirm <br /> you have read our Privacy Notice. You may receive offers, news and updates from us.</p>
+          <p className="font-bold">OR</p>
+          <button className="flex justify-center gap-3 bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5">
+          <IconBrandGoogleFilled/>
+            SignUp With Google
+          </button>
+        </div>
+      </div>
+
+      <div className="flex flex-col justify-center items-center gap-3 pt-12">
+        <div>
+          <div>
+          Already have an account?
+            <span className="text-blue-900 cursor-pointer underline">
+              <Link rel="stylesheet" to="/login">
+              Log in
+              </Link>
+            </span>
+          </div>
+        </div>
+
+        <div className="pt-12">
+          <p className="text-xs">
+            This site is protected by reCAPTCHA and the Google Privacy Policy
+            and Terms of Service apply.
+          </p>
+        </div>
       </div>
     </div>
   );
