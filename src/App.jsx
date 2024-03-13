@@ -65,6 +65,11 @@ function App() {
         />
 
         <Route
+          path="/loginbyphone"
+          element={isAuth ? <Navigate to="/links" /> : <Loginbyphone />}
+        />
+
+        <Route
           path="/links"
           element={isAuth ? <Links /> : <Navigate to="/" />}
         />
