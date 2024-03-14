@@ -6,7 +6,7 @@ function Loginbyphone() {
   return (
     <div className="bg-emerald-200 h-screen w-screen flex flex-col items-center justify-center gap-32">
       <Link rel="stylesheet" to="/">
-        <IconArrowLeft className="absolute top-10 left-10 hover:brightness-125 active:translate-y-0.5 cursor-pointer rounded-full size-10 text-emerald-200 bg-emerald-900" />
+        <IconArrowLeft className="absolute top-8 left-10 hover:brightness-125 active:translate-y-0.5 cursor-pointer rounded-full size-8 text-emerald-200 bg-emerald-900" />
       </Link>
       <div className="flex flex-col items-center justify-center gap-14">
         <div className="text-5xl font-extrabold text-emerald-900">

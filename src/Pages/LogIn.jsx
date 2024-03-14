@@ -22,7 +22,7 @@ function LogIn() {
   return (
     <div className="bg-emerald-200 h-screen w-screen flex flex-col items-center justify-center">
       <Link rel="stylesheet" to="/">
-        <IconArrowLeft className="absolute top-10 left-10 hover:brightness-125 active:translate-y-0.5 cursor-pointer rounded-full size-10 text-emerald-200 bg-emerald-900" />
+        <IconArrowLeft className="absolute top-8 left-10 hover:brightness-125 active:translate-y-0.5 cursor-pointer rounded-full size-8 text-emerald-200 bg-emerald-900" />
       </Link>
       <div className="flex flex-col justify-center items-center gap-10">
         <div className="flex flex-col justify-center items-center gap-3">

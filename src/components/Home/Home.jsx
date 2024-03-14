@@ -8,8 +8,8 @@ function Home() {
     <div>
       <div>
         <div className="fixed top-0 w-full z-50 p-10">
-          <div className="bg-white rounded-full flex p-3 flex-row justify-between">
-            <ul className="flex flex-row p-2 gap-1 text-xl text-center items-center ps-8">
+          <div className="bg-white rounded-full flex p-1 flex-row justify-between">
+            <ul className="flex flex-row p-1 gap-1 text-xl text-center items-center ps-8">
               <li className="text-center font-bold cursor-pointer text-xl text-emerald-900">
               MyLinkSet
               </li>
@@ -38,7 +38,7 @@ function Home() {
         </div>
 
         <div className="bg-emerald-200 text-emerald-900 h-screen w-screen flex flex-row items-center">
-          <div className="p-16 w-2/3 flex flex-col gap-12">
+          <div className="p-16 w-2/3 flex flex-col gap-12 mt-9">
             <h1 className="text-6xl font-extrabold">
               MyLinkSet: Your All-in-One Bio Link
             </h1>
