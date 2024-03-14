@@ -10,7 +10,6 @@ function Links() {
   const {linksData, setLinksData} = useAppContext();
   const [showModal, setShowModal] = useState(false);
 
-
   const closeModal = () => {
     setShowModal(false);
   };
@@ -35,8 +34,8 @@ function Links() {
     setShowModal(true);
   };
 
-  const LinkComps = linksData.map((link) => (
-    <Todo key={link.title} title={link.title} url={link.url}/>
+  const LinkComps = linksData.map((link, i) => (
+    <Todo key={link.title} title={link.title} url={link.url} id={i}/>
   ));
 
   return (

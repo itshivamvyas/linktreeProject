@@ -7,16 +7,19 @@ import {
 } from "@tabler/icons-react";
 import { useState } from "react";
 import { useAppContext } from "../App";
+import prependHttp from 'prepend-http';
 
-function Todo({ title, url }) {
+function Todo({ title, url, id }) {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
 
+  const {linksData, setLinksData} = useAppContext();
+
   const deleteTodo = () => {
-    const newTodos = linksData.filter((todo) => todo.title !== title);
+    const newTodos = linksData.filter((_, i) => i !== id);
     setLinksData(newTodos);
   };
 
@@ -46,19 +49,20 @@ function Todo({ title, url }) {
         <div className="flex gap-6">
           <Icon icon={IconEdit} />
 
-          <a href={url} target="_blank">
+          <a href={prependHttp(url)} target="_blank">
             <Icon icon={IconExternalLink} />
           </a>
           <Icon icon={IconStar} />
+
         </div>
 
-        <Icon icon={IconTrash} isDanger={true} onclick={deleteTodo} />
+        <Icon icon={IconTrash} isDanger={true} onClick={deleteTodo} />
       </div>
     </div>
   );
 }
 
-function Icon({ icon, isDanger }) {
+function Icon({ icon, isDanger, onClick }) {
   const I = icon;
 
   const dangerClassName = isDanger
@@ -67,6 +71,7 @@ function Icon({ icon, isDanger }) {
 
   return (
     <div
+    onClick={onClick}
       className={`${dangerClassName} p-2 rounded-full cursor-pointer active:translate-y-0.5`}
     >
       <I size={22} />
