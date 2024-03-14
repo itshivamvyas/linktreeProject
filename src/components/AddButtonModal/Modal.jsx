@@ -1,16 +1,36 @@
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { IconX } from "@tabler/icons-react";
 
 function Modal({ closeModal, setData }) {
-
   const [titleInput, setTitleInput] = useState("");
   const [urlInput, setUrlInput] = useState("");
+  const [titleError, setTitleError] = useState(false);
+  const [urlError, setUrlError] = useState(false);
+
+  const onSave = (e) => {
+    e.preventDefault();
+
+    if (titleInput.length === 0) {
+      setTitleError(true);
+      return;
+    }
+
+    if (urlInput.length === 0) {
+      setUrlError(true);
+      return;
+    }
+
+    closeModal();
+    setData(titleInput, urlInput);
+  };
 
   const titleHandler = (e) => {
+    setTitleError(false);
     setTitleInput(e.target.value);
   };
 
   const urlHandler = (e) => {
+    setUrlError(false);
     setUrlInput(e.target.value);
   };
 
@@ -30,54 +50,63 @@ function Modal({ closeModal, setData }) {
         className="bg-white max-w-96 w-full rounded-3xl p-8 shadow-2xl flex flex-col justify-between gap-5 relative"
         onClick={(e) => e.stopPropagation()}
       >
-        <button
-          className="absolute top-4 right-4 hover:bg-slate-200 text-stone-600 p-1 rounded-full cursor-pointer active:translate-y-0.5"
-          onClick={closeModal}
-        >
-          <IconX height={22} width={22} />
-        </button>
-        <div className="flex flex-col gap-4">
-          <div>
-            <div className="select-none">
-              <label htmlFor="title">
-                <p className="mb-2">Title</p>
-                <input
-                  type="text"
-                  id="title"
-                  placeholder="Enter Title"
-                  className="py-2 px-3 outline-none bg-gray-100 rounded-lg w-full focus:bg-gray-50 focus:outline-black"
-                  value={titleInput}
-                  onChange={titleHandler}
-                  required
-                />
-              </label>
+        <form>
+          <button
+            className="absolute top-4 right-4 hover:bg-slate-200 text-stone-600 p-1 rounded-full cursor-pointer active:translate-y-0.5"
+            onClick={closeModal}
+          >
+            <IconX height={22} width={22} />
+          </button>
+          <div className="flex flex-col gap-4">
+            <div>
+              <div className="select-none">
+                <label htmlFor="title">
+                  <p className="mb-2">Title</p>
+                  <input
+                    type="text"
+                    id="title"
+                    placeholder="Enter Title"
+                    className={`py-2 px-3 outline-none ring-1 bg-gray-100 rounded-lg w-full focus:bg-gray-50  ${
+                      titleError ? "ring-red-700" : "focus:outline-black"
+                    }`}
+                    value={titleInput}
+                    onChange={titleHandler}
+                  />
+                  {titleError && (
+                    <p className="text-red-700 ps-2 p-1">Title is required!</p>
+                  )}
+                </label>
+              </div>
+            </div>
+            <div>
+              <h1 className="select-none">
+                <label htmlFor="url">
+                  <p className="mb-2">URL</p>
+                  <input
+                    type="text"
+                    id="url"
+                    placeholder="Enter URL"
+                    className={`py-2 px-3 outline-none ring-1 bg-gray-100 rounded-lg w-full focus:bg-gray-50  ${
+                      urlError ? "ring-red-700" : "focus:outline-black"
+                    }`}
+                    value={urlInput}
+                    onChange={urlHandler}
+                  />
+                  {urlError && (
+                    <p className="text-red-700 ps-2 p-1">Url is required!</p>
+                  )}
+                </label>
+              </h1>
             </div>
           </div>
-          <div>
-            <h1 className="select-none">
-              <label htmlFor="url">
-                <p className="mb-2">URL</p>
-                <input
-                  type="text"
-                  id="url"
-                  placeholder="Enter URL"
-                  className="py-2 px-3 outline-none bg-gray-100 rounded-lg w-full focus:bg-gray-50 focus:outline-black"
-                  value={urlInput}
-                  onChange={urlHandler}
-                  required
-                />
-              </label>
-            </h1>
-          </div>
-        </div>
 
-        <div
-          className="flex justify-center items-center gap-2 p-2 bg-black rounded-lg text-white font-bold w-full hover:bg-opacity-85 shadow-lg shadow-black/40 z-50 transition-transform active:translate-y-0.5 mt-4" onClick={()=>{
-            closeModal();
-            setData(titleInput, urlInput);
-          }}>
-          <button className="select-none">Add Link</button>
-        </div>
+          <div
+            className="flex justify-center items-center mt-10 p-2 bg-black rounded-lg text-white font-bold w-full hover:bg-opacity-85 shadow-lg shadow-black/40 z-50 transition-transform active:translate-y-0.5"
+            onClick={onSave}
+          >
+            <button className="select-none">Add Link</button>
+          </div>
+        </form>
       </div>
     </div>
   );
