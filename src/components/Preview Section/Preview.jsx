@@ -21,7 +21,7 @@ function Preview() {
 
             <div className="flex flex-col gap-3 cursor-pointer">
               {linksData.map((it) => (
-                <div key={it.title} className="bg-white p-3 text-center text-xs font-bold hover:scale-105 transition-transform rounded-lg shadow-inner shadow-blue-800/20">
+                <div key={it.title} className="bg-white p-3 text-center text-xs font-bold hover:scale-105 transition-transform rounded-xl shadow-inner shadow-blue-800/20">
                   <p>{it.title}</p>
                 </div>
               ))}
