@@ -9,7 +9,7 @@ function Preview() {
         <div className="bg-white rounded-3xl p-4 border-8 border-black aspect-[9_/_19] h-[calc(100vh-150px)] overflow-y-auto no-scrollbar">
           <div className="text-justify">
             <div className="flex flex-col gap-2 justify-center items-center p-4">
-              <img
+            <img
                 className="rounded-full max-w-20 max-h-20"
                 src="./Shivam.jpg"
                 alt=""

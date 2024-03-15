@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IconLink, IconGrowth } from "@tabler/icons-react";
+import { IconLink, IconGrowth, IconUserCircle } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import Menu from "../DropDown Menu/Menu";
 
@@ -36,14 +36,7 @@ function Header() {
               <span className="font-bold">Hi, Shivam Vyas</span>
             </li>
             <li className="cursor-pointer">
-              <img
-                src="./Shivam.jpg"
-                alt=""
-                width={45}
-                height={45}
-                className="rounded-full hover:scale-110 transition-transform border-4"
-                onClick={onclickHandler}
-              />
+              <IconUserCircle className="rounded-full hover:scale-110 transition-transform border-4 size-10 active:translate-y-0.5" onClick={onclickHandler}/>
             </li>
           </ul>
         </div>
