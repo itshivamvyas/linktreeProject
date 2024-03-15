@@ -3,12 +3,11 @@ import { Link } from "react-router-dom";
 import { IconArrowLeft } from "@tabler/icons-react";
 
 function Loginbyphone() {
-  const [inputValue, setInputValue] = useState("");
-
-  const handleInput = (e) => {
-    const newValue = e.target.value.slice(0, 10);
-    setInputValue(newValue);
-  };
+const [inputValue, setInputValue] = useState('')
+const handleInput = (e) =>{
+  const newValue = e.target.value.slice(0, 10)
+  setInputValue(newValue)
+}
 
   return (
     <div className="bg-emerald-200 h-screen w-screen flex flex-col items-center justify-normal gap-32">

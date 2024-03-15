@@ -62,7 +62,7 @@ function Home() {
             </div>
           </div>
           <div>
-            <img src="./mylinkset.png" alt="" onClick={login}/>
+            <img src="./mylinkset.png" alt="" />
           </div>
         </div>
       </div>

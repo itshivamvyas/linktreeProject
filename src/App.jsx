@@ -9,38 +9,41 @@ import LogIn from "./Pages/LogIn";
 import Loginbyphone from "./Pages/Loginbyphone";
 import PublicLinks from "./Pages/PublicLinks";
 import { createContext } from "react";
+import {signInWithPopup } from "firebase/auth";
+import { auth, provider } from "./firebase";
 
 export const Context = createContext();
 export const useAppContext = () => useContext(Context);
 
 function App() {
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
 
   const [linksData, setLinksData] = useState(() => {
     const stored = localStorage.getItem("links");
     return stored ? JSON.parse(stored) : [];
   });
 
-  const [isAuth, setIsAuth] = useState(() => {
-    const stored = localStorage.getItem("auth");
-    return stored ? JSON.parse(stored) : false;
-  });
-
-  useEffect(() => {
-    localStorage.setItem("auth", JSON.stringify(isAuth));
-  }, [isAuth]);
+  const isAuth = user !== null;
 
   useEffect(() => {
     localStorage.setItem("links", JSON.stringify(linksData));
   }, [linksData]);
 
-  const logout = () => {
-    setIsAuth(false);
-    navigate("/");
+  const logout = async () => {
+    await auth.signOut();
   };
 
   const login = () => {
     setIsAuth(true);
+  };
+
+  const loginGoogle = async () => {
+    try {
+      await signInWithPopup(auth, provider);
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   const contextValue = {
@@ -48,7 +51,23 @@ function App() {
     setLinksData,
     logoutUser: logout,
     login,
+    user,
+    loginGoogle
   };
+
+  useEffect(() => {
+    auth.onAuthStateChanged((u) => {
+      if (u) {
+        setUser({ name: u.displayName, picture: u.photoURL, email: u.email });
+      } else {
+        setUser(null)
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    navigate(user ? "/links" : "/");
+  }, [user]);
 
   return (
     <Context.Provider value={contextValue}>

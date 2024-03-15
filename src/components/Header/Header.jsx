@@ -2,6 +2,7 @@ import { useState } from "react";
 import { IconLink, IconGrowth, IconUserCircle } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import Menu from "../DropDown Menu/Menu";
+import { useAppContext } from "../../App";
 
 function Header() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -9,6 +10,8 @@ function Header() {
   const onclickHandler = () => {
     setOpenMenu(!openMenu);
   };
+
+  const {user} = useAppContext()
 
   return (
     <>
@@ -33,7 +36,7 @@ function Header() {
             </Link>
 
             <li className="cursor-pointer flex justify-center items-center font-semibold text-xl">
-              <span className="font-bold">Hi, Shivam Vyas</span>
+              <span className="font-bold">Hi, {user.name}</span>
             </li>
             <li className="cursor-pointer">
               <IconUserCircle className="rounded-full hover:scale-110 transition-transform border-4 size-10 active:translate-y-0.5" onClick={onclickHandler}/>

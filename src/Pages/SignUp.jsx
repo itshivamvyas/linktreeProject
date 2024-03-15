@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IconBrandGoogleFilled, IconArrowLeft } from "@tabler/icons-react";
+import { useAppContext } from "../App";
 
 function SignUp() {
+  const {loginGoogle} = useAppContext()
   return (
     <div className="bg-emerald-200 h-screen w-screen flex flex-col items-center justify-center">
       <Link rel="stylesheet" to="/">
@@ -45,7 +47,7 @@ function SignUp() {
             may receive offers, news and updates from us.
           </p>
           <p className="font-bold">OR</p>
-          <button className="flex justify-center gap-3 bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5">
+          <button onClick={loginGoogle} className="flex justify-center gap-3 bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5">
             <IconBrandGoogleFilled />
             SignUp With Google
           </button>

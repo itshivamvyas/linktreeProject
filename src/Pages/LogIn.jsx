@@ -6,8 +6,11 @@ import {
   IconEyeOff,
   IconArrowLeft,
 } from "@tabler/icons-react";
+import { useAppContext } from "../App";
+
 
 function LogIn() {
+  const {loginGoogle} = useAppContext()
   const [maskPassword, setMaskPassword] = useState("password");
   const togglePasswordVisibility = () => {
     setMaskPassword(maskPassword === "password" ? "text" : "password");
@@ -18,6 +21,7 @@ function LogIn() {
     setPasswordShowIcon(!passwordShowIcon);
     togglePasswordVisibility();
   };
+
 
   return (
     <div className="bg-emerald-200 h-screen w-screen flex flex-col items-center justify-center">
@@ -56,7 +60,7 @@ function LogIn() {
             Log In
           </button>
           <p className="font-bold">OR</p>
-          <button className="flex justify-center gap-3 bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5">
+          <button onClick={loginGoogle} className="flex justify-center gap-3 bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5">
             <IconBrandGoogleFilled />
             Login With Google
           </button>
