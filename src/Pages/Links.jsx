@@ -46,7 +46,7 @@ function Links() {
         <div className="grid grid-cols-10">
           <div className="col-span-6">
             <section className="p-10 max-w-2xl mx-auto">
-              <div className="bg-gray-200 pt-5 sticky top-[93px] mb-14 z-50 rounded-b-[32px]">
+              <div className="bg-gray-200 pt-5 sticky top-[88px] mb-14 z-50 rounded-b-[32px]">
                 <button
                   onClick={onAddClick}
                   id="add"
