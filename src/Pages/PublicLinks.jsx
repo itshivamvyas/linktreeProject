@@ -3,16 +3,22 @@ import { useAppContext } from "../App";
 
 
 function PublicLinks() {
-  const { linksData } = useAppContext();
+  const { linksData, user } = useAppContext();
   return (
     <div>
       <div className="bg-slate-200 min-w-screen min-h-screen flex flex-col justify-center items-center">
       <div className="flex flex-col gap-1 justify-center items-center p-5">
-            <img
-                className="rounded-full max-w-28 max-h-28"
-                src="./Shivam.jpg"
-                alt=""
-              />
+      {user.picture ? (
+                <img
+                  src={user.picture}
+                  alt="User"
+                  className="rounded-full"
+                />
+              ) : (
+                <IconUserCircle
+                  className="rounded-full"
+                />
+              )}
               <h1 className="font-bold">@Itshivamvyas</h1>
               <h1>Software Developer</h1>
             </div>

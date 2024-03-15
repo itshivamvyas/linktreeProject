@@ -1,7 +1,7 @@
 import { useAppContext } from "../../App";
 
 function Preview() {
-  const { linksData } = useAppContext();
+  const { linksData, user } = useAppContext();
 
   return (
     <div className="col-span-4 flex justify-center p-10">
@@ -10,11 +10,17 @@ function Preview() {
           <div className="overflow-y-auto no-scrollbar h-full px-4">
           <div className="text-justify ">
             <div className="flex flex-col gap-1 justify-center items-center p-5">
-            <img
-                className="rounded-full max-w-20 max-h-20"
-                src="./Shivam.jpg"
-                alt=""
-              />
+            {user.picture ? (
+                <img
+                  src={user.picture}
+                  alt="User"
+                  className="rounded-full"
+                />
+              ) : (
+                <IconUserCircle
+                  className="rounded-full"
+                />
+              )}
               <h1 className="font-bold">@Itshivamvyas</h1>
               <h1>Software Developer</h1>
             </div>
