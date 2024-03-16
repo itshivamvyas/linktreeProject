@@ -9,8 +9,8 @@ import { useState } from "react";
 import { useAppContext } from "../App";
 import prependHttp from 'prepend-http';
 
-function Todo({ title, url, id }) {
-  const [isChecked, setIsChecked] = useState(false);
+function Todo({ title, url, id, showEditModal}) {
+  const [isChecked, setIsChecked] = useState(true);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -36,7 +36,7 @@ function Todo({ title, url, id }) {
         </div>
 
         <div className="flex flex-row gap-3 justify-center items-center">
-          <Icon icon={IconShare} />
+          {/* <Icon icon={IconShare} /> */}
 
           <label className="inline-flex items-center cursor-pointer">
             <input type="checkbox" value="" className="sr-only peer" />
@@ -47,12 +47,12 @@ function Todo({ title, url, id }) {
 
       <div className="flex flex-row justify-between w-full text-stone-600">
         <div className="flex gap-6">
-          <Icon icon={IconEdit} />
+          <Icon icon={IconEdit} onClick={showEditModal} />
 
           <a href={prependHttp(url)} target="_blank">
             <Icon icon={IconExternalLink} />
           </a>
-          <Icon icon={IconStar} />
+          {/* <Icon icon={IconStar} /> */}
 
         </div>
 
