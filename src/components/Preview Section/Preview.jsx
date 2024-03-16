@@ -1,5 +1,6 @@
 import { useAppContext } from "../../App";
 import prependHttp from "prepend-http";
+import { IconUserCircle } from "@tabler/icons-react";
 
 function Preview() {
   const { linksData, user } = useAppContext();
@@ -19,7 +20,7 @@ function Preview() {
                 />
               ) : (
                 <IconUserCircle
-                  className="rounded-full"
+                  className="rounded-full size-16"
                 />
               )}
               <h1 className="font-bold">@Itshivamvyas</h1>
