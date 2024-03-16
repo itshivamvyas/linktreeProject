@@ -103,7 +103,7 @@ function App() {
         />
         <Route
           path="/userdetails"
-          element={isAuth ? <Navigate to="/" /> : <Userdetails />}
+          element={isAuth ? <Userdetails /> : <Navigate to="/" />}
         />
         <Route
           path="/aboutus"
