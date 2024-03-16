@@ -5,14 +5,24 @@ import Modal from "../components/AddButtonModal/Modal";
 import {IconNewSection} from "@tabler/icons-react";
 import Header from "../components/Header/Header";
 import { useAppContext } from "../App";
+import Editmodal from "../components/EditModal/Editmodal";
 
 function Links() {
   const {linksData, setLinksData} = useAppContext();
   const [showModal, setShowModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
 
   const closeModal = () => {
     setShowModal(false);
   };
+
+  const closeEditModal = () => {
+    setEditModal(false);
+  };
+
+  const showEditModal = () => {
+    setEditModal(true);
+  }
 
   const setData = (title, url) => {
     setLinksData([
@@ -35,7 +45,7 @@ function Links() {
   };
 
   const LinkComps = linksData.map((link, i) => (
-    <Todo key={link.title} title={link.title} url={link.url} id={i}/>
+    <Todo key={link.title} title={link.title} url={link.url} id={i} showEditModal ={showEditModal}/>
   ));
 
   return (
@@ -77,6 +87,10 @@ function Links() {
 
               {showModal && (
                 <Modal closeModal={closeModal} setData={setData} />
+              )}
+
+              {editModal && (
+                <Editmodal closeEditModal = {closeEditModal}/>
               )}
               
             </section>
