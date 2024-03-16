@@ -9,11 +9,10 @@ import LogIn from "./Pages/LogIn";
 import Loginbyphone from "./Pages/Loginbyphone";
 import PublicLinks from "./Pages/PublicLinks";
 import { createContext } from "react";
-import {signInWithPopup } from "firebase/auth";
+import { signInWithPopup, createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, provider } from "./firebase";
-
-export const Context = createContext();
-export const useAppContext = () => useContext(Context);
+import Createpassword from "./Pages/Createpassword";
+import Userdetails from "./Pages/Userdetails";
 
 function App() {
   const navigate = useNavigate();
@@ -42,8 +41,12 @@ function App() {
     try {
       await signInWithPopup(auth, provider);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
+  };
+
+  const signupEmailPassword = () => {
+    createUserWithEmailAndPassword(auth);
   };
 
   const contextValue = {
@@ -52,7 +55,7 @@ function App() {
     logoutUser: logout,
     login,
     user,
-    loginGoogle
+    loginGoogle,
   };
 
   useEffect(() => {
@@ -60,7 +63,7 @@ function App() {
       if (u) {
         setUser({ name: u.displayName, picture: u.photoURL, email: u.email });
       } else {
-        setUser(null)
+        setUser(null);
       }
     });
   }, []);
@@ -79,6 +82,10 @@ function App() {
           element={isAuth ? <Navigate to="/links" /> : <SignUp />}
         />
         <Route
+          path="/createpassword"
+          element={isAuth ? <Navigate to="/links" /> : <Createpassword />}
+        />
+        <Route
           path="/login"
           element={isAuth ? <Navigate to="/links" /> : <LogIn />}
         />
@@ -91,6 +98,10 @@ function App() {
         <Route
           path="/links"
           element={isAuth ? <Links /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/userdetails"
+          element={isAuth ? <Navigate to="/" /> : <Userdetails />}
         />
         <Route
           path="/about-us"
@@ -110,3 +121,5 @@ function App() {
 }
 
 export default App;
+export const Context = createContext();
+export const useAppContext = () => useContext(Context);
