@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IconGrowth, IconUserCircle } from "@tabler/icons-react";
+import { IconUserCircle } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import Menu from "../DropDown Menu/Menu";
 import { useAppContext } from "../../App";
@@ -28,9 +28,6 @@ function Header() {
             <ul className="flex flex-row p-2 gap-1 text-xl text-center items-center ps-8">
               <li className="text-center font-bold cursor-pointer text-lg">
                 MyLinkSet
-              </li>
-              <li className="text-center items-center justify-center font-bold cursor-pointer text-indigo-700">
-                <IconGrowth className="text-black" />
               </li>
             </ul>
             </Link>

@@ -1,4 +1,3 @@
-import { IconLogin2, IconUserPlus, IconGrowth } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../../App";
 
@@ -11,26 +10,19 @@ function Home() {
           <div className="bg-white rounded-full flex p-1 flex-row justify-between">
             <ul className="flex flex-row p-1 gap-1 text-xl text-center items-center ps-8">
               <li className="text-center font-bold cursor-pointer text-xl text-emerald-900">
-              MyLinkSet
-              </li>
-              <li className="text-center items-center justify-center font-bold cursor-pointer text-indigo-700">
-                <IconGrowth className="text-emerald-900" />
+                MyLinkSet
               </li>
             </ul>
             <ul className="flex flex-row p-2 gap-5 pe-5 items-center">
-              <Link rel="stylesheet" to="/login">
-                <li
-                  className="hover:brightness-125 text-white transition-colors bg-emerald-900 rounded-xl px-6 py-2 font-bold active:translate-y-0.5 cursor-pointer flex flex-row gap-1 justify-center items-center"
-                >
-                  <IconLogin2 />
-                 
+              <Link rel="stylesheet" to="/signup">
+                <li className="hover:brightness-125 text-white transition-colors bg-emerald-900 rounded-xl px-6 py-2 font-bold active:translate-y-0.5 cursor-pointer flex flex-row gap-1 justify-center items-center">
+                  SignUp
                 </li>
               </Link>
 
-              <Link rel="stylesheet" to="/signup">
+              <Link rel="stylesheet" to="/login">
                 <li className="hover:brightness-125 text-white transition-colors bg-emerald-900 rounded-xl px-6 py-2 font-bold active:translate-y-0.5 cursor-pointer flex flex-row gap-1 justify-center items-center">
-                  <IconUserPlus />
-                 
+                  Login
                 </li>
               </Link>
             </ul>
@@ -50,11 +42,11 @@ function Home() {
             <div className="flex gap-4 h-12">
               <div className="flex items-center rounded-xl px-6 bg-white/80 border-2 border-emerald-900">
                 <p className="">mylinkset.vercel.app/</p>
-              <input
-                type="text"
-                placeholder="Claim Your Username"
-                className="bg-transparent outline-none"
-              />
+                <input
+                  type="text"
+                  placeholder="Claim Your Username"
+                  className="bg-transparent outline-none"
+                />
               </div>
               <button className="hover:brightness-125 text-white transition-colors bg-emerald-900 rounded-xl px-6 font-bold active:translate-y-0.5">
                 Claim

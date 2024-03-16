@@ -36,11 +36,12 @@ function LogIn() {
           <div className="text-xl text-emerald-900">Log in To MyLinkSet</div>
         </div>
 
+
         <div className="flex flex-col justify-center items-center gap-3 w-full">
           <input
             type="email"
             placeholder="Email Or Username"
-            className="p-3 w-full rounded-lg bg-white"
+            className="p-3 w-full rounded-lg bg-white outline-none focus-within:ring-2 ring-black"
           />
           <div className="flex items-center bg-white rounded-lg w-full focus-within:ring-2 ring-black">
             <input
@@ -88,13 +89,6 @@ function LogIn() {
               </Link>
             </span>
           </div>
-        </div>
-
-        <div className="pt-12">
-          <p className="text-xs">
-            This site is protected by reCAPTCHA and the Google Privacy Policy
-            and Terms of Service apply.
-          </p>
         </div>
       </div>
     </div>

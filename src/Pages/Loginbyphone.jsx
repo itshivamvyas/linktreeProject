@@ -20,7 +20,7 @@ const handleInput = (e) =>{
         </div>
 
         <div className="flex flex-col w-full gap-2">
-          <div className="flex items-center rounded-lg px-2 border-2 border-emerald-900 bg-white">
+          <div className="flex items-center rounded-lg px-2 focus-within:ring-2 ring-black bg-white">
             <p className="text-xl">+91</p>
             <input
               type="number"
@@ -52,13 +52,6 @@ const handleInput = (e) =>{
               </Link>
             </span>
           </div>
-        </div>
-
-        <div className="text-xs">
-          <p>
-            This site is protected by reCAPTCHA and the Google Privacy Policy
-            and Terms of Service apply.
-          </p>
         </div>
       </div>
     </div>

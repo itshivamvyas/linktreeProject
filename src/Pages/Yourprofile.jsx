@@ -2,15 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { IconArrowLeft } from "@tabler/icons-react";
 
-function Userdetails() {
+function Yourprofile() {
   return (
-    <div className="bg-emerald-200 min-h-screen min-w-screen flex flex-col items-center justify-center">
+    <div className="bg-white min-h-screen min-w-screen flex flex-col items-center justify-center">
       <Link rel="stylesheet" to="/">
-        <IconArrowLeft className="absolute top-8 left-10 hover:brightness-125 active:translate-y-0.5 cursor-pointer rounded-full size-8 text-emerald-200 bg-emerald-900" />
+        <IconArrowLeft className="absolute top-8 left-10 hover:bg-gray-500 active:translate-y-0.5 cursor-pointer rounded-full size-8 text-white bg-black" />
       </Link>
       <div className="flex flex-col justify-center items-center w-full">
-        <div>
+        <div className="flex flex-col justify-center items-center">
           <img src="./user.png" alt="user" className="size-60 cursor-pointer rounded-full" />
+          <p className="cursor-pointer">Change Profile Picture</p>
         </div>
         <form action="" className="flex flex-col gap-16 min-w-[700px] p-6">
             <div className="flex flex-col gap-6">
@@ -30,6 +31,7 @@ function Userdetails() {
             <label htmlFor="username" className="flex flex-col gap-1">
               <p className="ps-2">Your Username</p>
               <input
+              disabled
                 type="text"
                 id="username"
                 placeholder="Enter Your Username"
@@ -42,14 +44,14 @@ function Userdetails() {
           <div>
             <button
               type="submit"
-              className="flex justify-center items-center select-none gap-2 py-3 px-5 bg-emerald-900 rounded-xl text-emerald-200 font-bold w-full hover:bg-opacity-85 shadow-lg shadow-black/40 z-50 transition-transform active:translate-y-0.5">
-              Next
+              className="flex justify-center items-center select-none gap-2 py-3 px-5 bg-black rounded-xl text-white font-bold w-full hover:bg-opacity-85 shadow-lg shadow-black/40 z-50 transition-transform active:translate-y-0.5">
+              Save
             </button>
           </div>
         </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default Userdetails;
+export default Yourprofile

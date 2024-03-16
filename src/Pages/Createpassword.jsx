@@ -64,12 +64,6 @@ function Createpassword() {
         </div>
       </div>
     </div>
-      <div className="pt-12">
-        <p className="text-xs">
-          This site is protected by reCAPTCHA and the Google Privacy Policy
-          and Terms of Service apply.
-        </p>
-      </div>
     </div>
   );
 }

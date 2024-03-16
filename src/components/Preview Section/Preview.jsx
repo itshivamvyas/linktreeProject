@@ -1,4 +1,5 @@
 import { useAppContext } from "../../App";
+import prependHttp from "prepend-http";
 
 function Preview() {
   const { linksData, user } = useAppContext();
@@ -26,10 +27,10 @@ function Preview() {
             </div>
 
             <div className="flex flex-col gap-3 cursor-pointer">
-              {linksData.map((it) => (
-                <div key={it.title} className="bg-white p-3 text-center text-xs font-bold hover:scale-105 transition-transform rounded-xl shadow-inner shadow-blue-800/20">
-                  <p>{it.title}</p>
-                </div>
+            {linksData.map((it) => (
+                <a href={prependHttp(it.url)} target="_blank" key={it.title} className="bg-white p-3 text-center font-bold hover:scale-105 transition-transform rounded-xl shadow-inner shadow-blue-800/25">
+                  {it.title}
+                </a>
               ))}
             </div>
           </div>

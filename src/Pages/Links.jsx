@@ -2,7 +2,7 @@ import { useState } from "react";
 import Todo from "./Todo";
 import Preview from "../components/Preview Section/Preview";
 import Modal from "../components/AddButtonModal/Modal";
-import {IconGrowth} from "@tabler/icons-react";
+import {IconNewSection} from "@tabler/icons-react";
 import Header from "../components/Header/Header";
 import { useAppContext } from "../App";
 
@@ -68,8 +68,8 @@ function Links() {
               </div>
 
 
-              {linksData.length === 0 && <div className="fixed -z-50">
-                <IconGrowth width={600} height={400} className="opacity-5"/>
+              {linksData.length === 0 && <div className="absolute top-[50%] left-[24%] -z-50">
+                <IconNewSection className="opacity-5 size-48"/>
                 </div>}
              
 

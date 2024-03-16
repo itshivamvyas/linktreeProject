@@ -23,7 +23,7 @@ function SignUp() {
           <input
             type="email"
             placeholder="Email"
-            className="p-3 w-full rounded-lg bg-white"
+            className="p-3 w-full rounded-lg bg-white outline-none focus-within:ring-2 ring-black"
           />
 
           <div className="flex items-center bg-white rounded-lg p-3 w-full focus-within:ring-2 ring-black">
@@ -70,13 +70,6 @@ function SignUp() {
               </Link>
             </span>
           </div>
-        </div>
-
-        <div className="pt-12">
-          <p className="text-xs">
-            This site is protected by reCAPTCHA and the Google Privacy Policy
-            and Terms of Service apply.
-          </p>
         </div>
       </div>
     </div>

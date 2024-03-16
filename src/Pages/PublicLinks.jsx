@@ -1,5 +1,6 @@
 import prependHttp from "prepend-http";
 import { useAppContext } from "../App";
+import { IconUserCircle } from "@tabler/icons-react";
 
 
 function PublicLinks() {
@@ -25,7 +26,7 @@ function PublicLinks() {
 
             <div className="flex flex-col gap-3 cursor-pointer w-full p-4 max-w-3xl">
               {linksData.map((it) => (
-                <a href={prependHttp(it.url)} key={it.title} className="bg-white p-5 text-center font-bold hover:scale-105 transition-transform rounded-xl shadow-inner shadow-blue-800/25">
+                <a href={prependHttp(it.url)} target="_blank" key={it.title} className="bg-white p-5 text-center font-bold hover:scale-105 transition-transform rounded-xl shadow-inner shadow-blue-800/25">
                   {it.title}
                 </a>
               ))}

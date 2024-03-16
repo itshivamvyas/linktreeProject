@@ -14,6 +14,7 @@ import { auth, provider } from "./firebase";
 import Createpassword from "./Pages/Createpassword";
 import Userdetails from "./Pages/Userdetails";
 import Themes from "./Pages/Themes";
+import Yourprofile from "./Pages/Yourprofile";
 
 function App() {
   const navigate = useNavigate();
@@ -105,15 +106,19 @@ function App() {
           element={isAuth ? <Navigate to="/" /> : <Userdetails />}
         />
         <Route
-          path="/about-us"
+          path="/aboutus"
           element={isAuth ? <AboutUs /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/yourprofile"
+          element={isAuth ? <Yourprofile /> : <Navigate to="/" />}
         />
         <Route
           path="/themes"
           element={isAuth ? <Themes /> : <Navigate to="/" />}
         />
         <Route
-          path="/contact-us"
+          path="/contactus"
           element={isAuth ? <ContactUs /> : <Navigate to="/" />}
         />
 
