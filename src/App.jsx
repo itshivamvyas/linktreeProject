@@ -13,6 +13,7 @@ import { signInWithPopup, createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, provider } from "./firebase";
 import Createpassword from "./Pages/Createpassword";
 import Userdetails from "./Pages/Userdetails";
+import Themes from "./Pages/Themes";
 
 function App() {
   const navigate = useNavigate();
@@ -106,6 +107,10 @@ function App() {
         <Route
           path="/about-us"
           element={isAuth ? <AboutUs /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/themes"
+          element={isAuth ? <Themes /> : <Navigate to="/" />}
         />
         <Route
           path="/contact-us"

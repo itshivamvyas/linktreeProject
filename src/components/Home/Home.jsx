@@ -37,7 +37,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="bg-emerald-200 text-emerald-900 h-screen w-screen flex flex-row items-center">
+        <div className="bg-emerald-200 text-emerald-900 min-h-screen min-w-screen flex flex-row items-center">
           <div className="p-16 w-2/3 flex flex-col gap-12 mt-9">
             <h1 className="text-6xl font-extrabold">
               MyLinkSet: Your All-in-One Bio Link

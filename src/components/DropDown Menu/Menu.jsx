@@ -29,12 +29,15 @@ function Menu({ closeMenu }) {
           >
             <IconUserScan /> Your Profile
           </li>
+
+          <Link to="/themes" >
           <li
             className="flex flex-row gap-3 p-3 cursor-pointer min-w-60 font-semibold hover:bg-black hover:text-white active:translate-y-0.5"
             onClick={closeMenu}
           >
             <IconShirt /> Themes
           </li>
+          </Link>
           <Link rel="stylesheet" to="/about-us">
             <li
               className="flex flex-row gap-3 p-3 cursor-pointer min-w-60 font-semibold hover:bg-black hover:text-white active:translate-y-0.5"
