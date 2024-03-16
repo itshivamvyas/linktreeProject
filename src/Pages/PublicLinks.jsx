@@ -7,7 +7,7 @@ function PublicLinks() {
   const { linksData, user } = useAppContext();
   return (
     <div>
-      <div className="bg-slate-200 min-w-screen min-h-screen flex flex-col justify-center items-center">
+      <div className="bg-slate-200 w-screen min-h-screen flex flex-col justify-center items-center">
       <div className="flex flex-col gap-1 justify-center items-center p-5">
       {user.picture ? (
                 <img

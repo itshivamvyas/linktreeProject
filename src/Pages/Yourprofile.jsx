@@ -4,7 +4,7 @@ import { IconArrowLeft } from "@tabler/icons-react";
 
 function Yourprofile() {
   return (
-    <div className="bg-white min-h-screen min-w-screen flex flex-col items-center justify-center">
+    <div className="bg-white min-h-screen w-screen flex flex-col items-center justify-center">
       <Link rel="stylesheet" to="/">
         <IconArrowLeft className="absolute top-8 left-10 hover:bg-gray-500 active:translate-y-0.5 cursor-pointer rounded-full size-8 text-white bg-black" />
       </Link>
