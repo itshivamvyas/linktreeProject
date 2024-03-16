@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { IconEye, IconEyeOff, IconArrowLeft } from "@tabler/icons-react";
+import { useAppContext } from "../App";
 
 function Createpassword() {
+  const {signupEmailPassword} = useAppContext()
   const [maskPassword, setMaskPassword] = useState("password");
   const togglePasswordVisibility = () => {
     setMaskPassword(maskPassword === "password" ? "text" : "password");
@@ -54,7 +56,7 @@ function Createpassword() {
       </div>
       </div>
 
-      <div className="flex flex-col justify-center items-center gap-3 w-full">
+      <div className="flex flex-col justify-center items-center gap-3 w-full" onClick={signupEmailPassword}>
         <div className="w-full">
         <Link to="/userdetails">
           <button className="flex justify-center bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5">
