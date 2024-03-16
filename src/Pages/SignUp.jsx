@@ -1,10 +1,9 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { IconBrandGoogleFilled, IconArrowLeft } from "@tabler/icons-react";
 import { useAppContext } from "../App";
 
 function SignUp() {
-  const {loginGoogle} = useAppContext()
+  const { loginGoogle } = useAppContext();
   return (
     <div className="bg-emerald-200 h-screen w-screen flex flex-col items-center justify-center">
       <Link rel="stylesheet" to="/">
@@ -38,16 +37,23 @@ function SignUp() {
         </div>
 
         <div className="flex flex-col justify-center items-center gap-3 w-full">
-          <button className="flex justify-center bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5">
-            Create Account
-          </button>
+          <div className="w-full">
+          <Link to="/createpassword">
+            <button className="flex justify-center bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5">
+              Create Account
+            </button>
+          </Link>
+          </div>
           <p className="text-emerald-900">
             By clicking Create account, you agree to MyLinkSet Terms and
             Conditions and confirm <br /> you have read our Privacy Notice. You
             may receive offers, news and updates from us.
           </p>
           <p className="font-bold">OR</p>
-          <button onClick={loginGoogle} className="flex justify-center gap-3 bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5">
+          <button
+            onClick={loginGoogle}
+            className="flex justify-center gap-3 bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5"
+          >
             <IconBrandGoogleFilled />
             SignUp With Google
           </button>
