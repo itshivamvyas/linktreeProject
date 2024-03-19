@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { IconArrowLeft, IconShieldLock } from "@tabler/icons-react";
 import { useAppContext } from "../App";
-import OtpInput from 'react-otp-input';
+import OtpInput from "react-otp-input";
 
 function OtpVerification() {
-const {otp, setOtp, verifyOtp} = useAppContext()
+  const { otp, setOtp, sendOTP,  verifyOtp } = useAppContext();
 
   return (
     <div className="bg-emerald-200 min-h-screen w-screen flex flex-col items-center justify-normal gap-32">
@@ -21,16 +21,13 @@ const {otp, setOtp, verifyOtp} = useAppContext()
           <IconShieldLock className="size-16 text-emerald-900" />
           <p className="font-bold text-xl text-emerald-900">Enter Your OTP</p>
 
-
           <OtpInput
-      value={otp}
-      onChange={setOtp}
-      numInputs={6}
-      renderSeparator={<span>-</span>}
-      renderInput={(props) => <input {...props} />}
-    />
-
-
+            value={otp}
+            onChange={setOtp}
+            numInputs={6}
+            renderSeparator={<span>-</span>}
+            renderInput={(props) => <input {...props} />}
+          />
 
           {/* <div className="flex items-center justify-center rounded-lg gap-4">
             <input
@@ -90,8 +87,15 @@ const {otp, setOtp, verifyOtp} = useAppContext()
           </div> */}
         </div>
 
+        <div>
+          <button onClick={sendOTP}>Resend Otp</button>
+        </div>
+
         <div className="flex flex-col items-center justify-center gap-4 w-full">
-          <button onClick={verifyOtp} className="flex justify-center w-full bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold hover:brightness-125 z-50 transition-transform active:translate-y-0.5">
+          <button
+            onClick={verifyOtp}
+            className="flex justify-center w-full bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold hover:brightness-125 z-50 transition-transform active:translate-y-0.5"
+          >
             Verify
           </button>
 

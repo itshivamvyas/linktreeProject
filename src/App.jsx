@@ -123,10 +123,13 @@ function App() {
     }
   };
 
+
   const verifyOtp = async () => {
     try {
       const data = await otpUser.confirm(otp);
       toast.success("Successful Login");
+      setOtp("")
+      setPhoneNumber("")
     } catch (error) {
       toast.error("Invalid OTP");
       console.log(error);
