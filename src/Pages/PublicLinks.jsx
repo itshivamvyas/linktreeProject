@@ -5,6 +5,9 @@ import { IconUserCircle } from "@tabler/icons-react";
 
 function PublicLinks() {
   const { linksData, user } = useAppContext();
+
+  if(!user) return null;
+
   return (
     <div>
       <div className="bg-slate-200 w-screen min-h-screen flex flex-col justify-center items-center">
@@ -17,7 +20,7 @@ function PublicLinks() {
                 />
               ) : (
                 <IconUserCircle
-                  className="rounded-full"
+                  className="rounded-full size-20"
                 />
               )}
               <h1 className="font-bold">@Itshivamvyas</h1>
