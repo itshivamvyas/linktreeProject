@@ -10,7 +10,7 @@ import { useAppContext } from "../App";
 
 
 function LogIn() {
-  const {loginGoogle} = useAppContext()
+  const {loginGoogle, signInEmailInput, setSignInEmailInput, signInPasswordInput, setSignInPasswordInput, signInEmailPassword} = useAppContext()
   const [maskPassword, setMaskPassword] = useState("password");
   const togglePasswordVisibility = () => {
     setMaskPassword(maskPassword === "password" ? "text" : "password");
@@ -40,12 +40,16 @@ function LogIn() {
         <div className="flex flex-col justify-center items-center gap-3 w-full">
           <input
             type="email"
+            value={signInEmailInput}
+            onChange={(e) => setSignInEmailInput(e.target.value)}
             placeholder="Email Or Username"
             className="p-3 w-full rounded-lg bg-white outline-none focus-within:ring-2 ring-black"
           />
           <div className="flex items-center bg-white rounded-lg w-full focus-within:ring-2 ring-black">
             <input
               type={maskPassword}
+              value={signInPasswordInput}
+              onChange={(e) => setSignInPasswordInput(e.target.value)}
               placeholder="Password"
               className="p-3 w-full rounded-lg bg-white outline-none"
             />
@@ -57,7 +61,7 @@ function LogIn() {
         </div>
 
         <div className="flex flex-col justify-center items-center gap-3 w-full">
-          <button className="flex justify-center bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5">
+          <button onClick={signInEmailPassword} className="flex justify-center bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5">
             Log In
           </button>
           <p className="font-bold">OR</p>
