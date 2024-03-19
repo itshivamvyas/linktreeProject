@@ -3,7 +3,7 @@ import { IconBrandGoogleFilled, IconArrowLeft } from "@tabler/icons-react";
 import { useAppContext } from "../App";
 
 function SignUp() {
-  const { loginGoogle } = useAppContext();
+  const { loginGoogle, setSignUpEmailInput } = useAppContext();
   return (
     <div className="bg-emerald-200 min-h-screen w-screen flex flex-col items-center justify-center">
       <Link rel="stylesheet" to="/">
@@ -23,6 +23,7 @@ function SignUp() {
           <input
             type="email"
             placeholder="Email"
+            onChange={(e)=>{setSignUpEmailInput(e.target.value)}}
             className="p-3 w-full rounded-lg bg-white outline-none focus-within:ring-2 ring-black"
           />
 
