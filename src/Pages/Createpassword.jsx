@@ -4,13 +4,16 @@ import { IconEye, IconEyeOff, IconArrowLeft } from "@tabler/icons-react";
 import { useAppContext } from "../App";
 
 function Createpassword() {
-  const {signupEmailPassword} = useAppContext()
+  const {signupEmailPassword, setCreatePasswordInput} = useAppContext()
   const [maskPassword, setMaskPassword] = useState("password");
   const togglePasswordVisibility = () => {
     setMaskPassword(maskPassword === "password" ? "text" : "password");
   };
   const [passwordShowIcon, setPasswordShowIcon] = useState(false);
   const IconReplace = passwordShowIcon ? IconEye : IconEyeOff;
+
+  const [inputValue, setInputValue] = useState("")
+
   const OnclickPasswordButton = () => {
     setPasswordShowIcon(!passwordShowIcon);
     togglePasswordVisibility();
@@ -34,35 +37,43 @@ function Createpassword() {
       <div className="flex items-center bg-white rounded-lg w-full focus-within:ring-2 ring-black">
         <input
           type={maskPassword}
+          onChange={(e)=>{
+            setInputValue(e.target.value)
+            setCreatePasswordInput(e.target.value)
+          }}
           placeholder="Create Password"
           className="p-3 w-full rounded-lg bg-white outline-none"
         />
-        <IconReplace
+        {/* <IconReplace
           onClick={OnclickPasswordButton}
           className="cursor-pointer mr-3"
-        />
+        /> */}
       </div>
 
       <div className="flex items-center bg-white rounded-lg w-full focus-within:ring-2 ring-black">
         <input
-          type={maskPassword}
+          type="text"
+          defaultValue={inputValue}
+          disabled
           placeholder="Confirm Password"
           className="p-3 w-full rounded-lg bg-white outline-none"
         />
-        <IconReplace
+
+    
+        {/* <IconReplace
           onClick={OnclickPasswordButton}
           className="cursor-pointer mr-3"
-        />
+        /> */}
       </div>
       </div>
 
-      <div className="flex flex-col justify-center items-center gap-3 w-full" onClick={signupEmailPassword}>
+      <div className="flex flex-col justify-center items-center gap-3 w-full">
         <div className="w-full">
-        <Link to="/userdetails">
-          <button className="flex justify-center bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5">
+        {/* <Link to="/userdetails"> */}
+          <button onClick={signupEmailPassword} className="flex justify-center bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5">
             Create Password
           </button>
-        </Link>
+        {/* </Link> */}
         </div>
       </div>
     </div>
