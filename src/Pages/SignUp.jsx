@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
 import { IconBrandGoogleFilled, IconArrowLeft } from "@tabler/icons-react";
+import { loginWithGoogle } from "../firebase/auth";
 import { useAppContext } from "../App";
 
 function SignUp() {
-  const { loginGoogle, setSignUpEmailInput } = useAppContext();
+  const {
+    signUpWithEmailAndPasswordEmailInput,
+    setSignUpWithEmailAndPasswordEmailInput,
+    usernameInput,
+    setUsernameInput,
+  } = useAppContext();
   return (
     <div className="bg-emerald-200 min-h-screen w-screen flex flex-col items-center justify-center">
       <Link rel="stylesheet" to="/">
@@ -23,7 +29,10 @@ function SignUp() {
           <input
             type="email"
             placeholder="Email"
-            onChange={(e)=>{setSignUpEmailInput(e.target.value)}}
+            value={signUpWithEmailAndPasswordEmailInput}
+            onChange={(e) => {
+              setSignUpWithEmailAndPasswordEmailInput(e.target.value);
+            }}
             className="p-3 w-full rounded-lg bg-white outline-none focus-within:ring-2 ring-black"
           />
 
@@ -32,6 +41,10 @@ function SignUp() {
             <input
               type="text"
               placeholder="Username"
+              value={usernameInput}
+              onChange={(e) => {
+                setUsernameInput(e.target.value);
+              }}
               className="w-full rounded-lg bg-transparent outline-none"
             />
           </div>
@@ -39,11 +52,11 @@ function SignUp() {
 
         <div className="flex flex-col justify-center items-center gap-3 w-full">
           <div className="w-full">
-          <Link to="/createpassword">
-            <button className="flex justify-center bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5">
-              Create Account
-            </button>
-          </Link>
+            <Link to="/createpassword">
+              <button className="flex justify-center bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5">
+                Create Account
+              </button>
+            </Link>
           </div>
           <p className="text-emerald-900">
             By clicking Create account, you agree to MyLinkSet Terms and
@@ -52,7 +65,7 @@ function SignUp() {
           </p>
           <p className="font-bold">OR</p>
           <button
-            onClick={loginGoogle}
+            onClick={() => loginWithGoogle(usernameInput)}
             className="flex justify-center gap-3 bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5"
           >
             <IconBrandGoogleFilled />

@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IconArrowLeft } from "@tabler/icons-react";
-import { updateUserDetail } from "../firebase/firestore";
 import { useAppContext } from "../App";
-import { getAuth } from "firebase/auth";
 
 function Userdetails() {
   const {user} = useAppContext()
@@ -46,7 +44,6 @@ function Userdetails() {
           <div>
             <button
               type="submit"
-              onClick={()=>updateUserDetail(getAuth().currentUser.uid)}
               className="flex justify-center items-center select-none gap-2 py-3 px-5 bg-emerald-900 rounded-xl text-emerald-200 font-bold w-full hover:bg-opacity-85 shadow-lg shadow-black/40 z-50 transition-transform active:translate-y-0.5">
               Next
             </button>
