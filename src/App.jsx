@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, createContext, useRef } from "react";
 import Links from "./Pages/Links";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import AboutUs from "./Pages/AboutUs";
@@ -8,34 +8,28 @@ import SignUp from "./Pages/SignUp";
 import LogIn from "./Pages/LogIn";
 import Loginbyphone from "./Pages/Loginbyphone";
 import PublicLinks from "./Pages/PublicLinks";
-import { createContext } from "react";
-import {
-  signInWithPopup,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signInWithPhoneNumber,
-  RecaptchaVerifier,
-} from "firebase/auth";
-import { auth, provider } from "./firebase";
+import { auth } from "./firebase";
 import Createpassword from "./Pages/Createpassword";
 import Userdetails from "./Pages/Userdetails";
 import Themes from "./Pages/Themes";
 import Yourprofile from "./Pages/Yourprofile";
-import { addUserDetail } from "./firebase/firestore";
-import { toast } from "react-hot-toast";
 import OtpVerification from "./Pages/OtpVerification";
+import { toast } from "react-hot-toast";
+import { addOrUpdateUserDetail } from "./firebase/firestore";
 
 function App() {
+  const otpConfirmationResult = useRef(null);
+
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  const [signUpEmailInput, setSignUpEmailInput] = useState("");
-  const [signInEmailInput, setSignInEmailInput] = useState("");
-  const [signInPasswordInput, setSignInPasswordInput] = useState("");
-  const [createPasswordInput, setCreatePasswordInput] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [otp, setOtp] = useState("")
-  const [otpUser, setOtpUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [otp, setOtp] = useState("");
+  const [
+    signUpWithEmailAndPasswordEmailInput,
+    setSignUpWithEmailAndPasswordEmailInput,
+  ] = useState("");
+  const [usernameInput, setUsernameInput] = useState("");
   const [linksData, setLinksData] = useState(() => {
     const stored = localStorage.getItem("links");
     return stored ? JSON.parse(stored) : [];
@@ -43,93 +37,23 @@ function App() {
 
   const isAuth = user !== null;
 
-  const logout = async () => {
-    await auth.signOut();
-  };
-
-  const loginGoogle = async () => {
-    try {
-      await signInWithPopup(auth, provider);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const signupEmailPassword = async () => {
-    const u = await createUserWithEmailAndPassword(
-      auth,
-      signUpEmailInput,
-      createPasswordInput
-    );
-    await addUserDetail({
-      uid: u.user.uid,
-      email: u.user.email,
-    });
-
-    navigate("/userdetails");
-  };
-
   const checkForUser = async () => {
     setIsLoading(true);
     await auth.authStateReady();
     setTimeout(() => setIsLoading(false), 500);
   };
 
-  const signInEmailPassword = async () => {
-    try {
-      await signInWithEmailAndPassword(
-        auth,
-        signInEmailInput,
-        signInPasswordInput
-      );
-      toast.success("Successful Login");
-      setSignInEmailInput("");
-      setSignInPasswordInput("");
-    } catch (error) {
-      console.log(error.code);
-      toast.error("Invalid Email And Password");
-    }
-  };
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (phoneNumber.length < 10) {
-        console.log(
-          "Phone Number Is Less Than 10 Digit Please Check Your Number"
-        );
-      } else {
-        console.log("Phone Number Is Correct");
-      }
-    }, 500);
-  }, [phoneNumber]);
-
-  const sendOTP = async () => {
-    try {
-      const formattedNumber = "+91" + phoneNumber;
-      console.log(formattedNumber);
-      const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {
-        size: "invisible",
-      });
-      const confirmation = await signInWithPhoneNumber(
-        auth,
-        formattedNumber,
-        recaptcha
-      );
-      setOtpUser(confirmation);
-      toast.success("Otp Sent Successfully");
-      navigate("/otpverification");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-
   const verifyOtp = async () => {
     try {
-      const data = await otpUser.confirm(otp);
-      toast.success("Successful Login");
-      setOtp("")
-      setPhoneNumber("")
+      const u = await otpConfirmationResult.current.confirm(otp);
+      await addOrUpdateUserDetail(u.user.uid, {
+        phone: u.user.phoneNumber,
+      });
+
+      toast.success("Login Successful");
+
+      setOtp("");
+      setPhoneNumber("");
     } catch (error) {
       toast.error("Invalid OTP");
       console.log(error);
@@ -142,8 +66,9 @@ function App() {
 
   useEffect(() => {
     checkForUser();
-    auth.onAuthStateChanged((u) => {
+    auth.onAuthStateChanged(async (u) => {
       if (u) {
+        // console.log(await getUserDetailData(u.uid))
         setUser({ name: u.displayName, picture: u.photoURL, email: u.email });
       } else {
         setUser(null);
@@ -151,31 +76,25 @@ function App() {
     });
   }, []);
 
-  // useEffect(() => {
-  //   // If user exists, check if name exists or not
-  //   navigate(user ? (user.name ? "/links" : "/userdetails") : "/");
-  // }, [user]);
+  useEffect(() => {
+    // If user exists, check if name exists or not
+    navigate(user ? (user.name ? "/links" : "/userdetails") : "/");
+  }, [user]);
 
   const contextValue = {
     linksData,
     setLinksData,
-    logoutUser: logout,
     user,
-    loginGoogle,
-    signupEmailPassword,
-    setSignUpEmailInput,
-    setCreatePasswordInput,
-    signInEmailInput,
-    setSignInEmailInput,
-    signInPasswordInput,
-    setSignInPasswordInput,
-    signInEmailPassword,
-    phoneNumber,
-    setPhoneNumber,
-    sendOTP,
     verifyOtp,
     otp,
-    setOtp
+    setOtp,
+    phoneNumber,
+    setPhoneNumber,
+    otpConfirmationResult: otpConfirmationResult,
+    signUpWithEmailAndPasswordEmailInput,
+    setSignUpWithEmailAndPasswordEmailInput,
+    usernameInput,
+    setUsernameInput,
   };
 
   if (isLoading) {
