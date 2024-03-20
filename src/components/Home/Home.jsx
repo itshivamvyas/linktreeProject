@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useAppContext } from "../../App";
 
 function Home() {
-  const { login, usernameInput, setUsernameInput } = useAppContext();
+  const { usernameInput, setUsernameInput } = useAppContext();
   return (
     <div>
       <div>
@@ -15,7 +15,7 @@ function Home() {
             </ul>
             <ul className="flex flex-row p-2 gap-5 pe-5 items-center">
               <Link rel="stylesheet" to="/signup">
-                <li className="hover:brightness-125 text-white transition-colors bg-emerald-900 rounded-xl px-6 py-2 font-bold active:translate-y-0.5 cursor-pointer flex flex-row gap-1 justify-center items-center">
+                <li className="hover:brightness-125 text-white transition-colors bg-emerald-500 rounded-xl px-6 py-2 font-bold active:translate-y-0.5 cursor-pointer flex flex-row gap-1 justify-center items-center">
                   SignUp
                 </li>
               </Link>
@@ -60,8 +60,9 @@ function Home() {
               </Link>
             </div>
           </div>
+
           <div>
-            <img src="./mylinkset.png" alt="" />
+            <img src="./mylinkset.png" alt="mylinkset" className="w-auto h-96 pt-14"/>
           </div>
         </div>
       </div>
