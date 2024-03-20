@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useAppContext } from "../../App";
 
 function Home() {
-  const { login } = useAppContext();
+  const { login, usernameInput, setUsernameInput } = useAppContext();
   return (
     <div>
       <div>
@@ -44,13 +44,20 @@ function Home() {
                 <p className="">mylinkset.vercel.app/</p>
                 <input
                   type="text"
+                  value={usernameInput}
+                  onChange={(e) => {
+                    setUsernameInput(e.target.value);
+                  }}
                   placeholder="Claim Your Username"
                   className="bg-transparent outline-none"
                 />
               </div>
-              <button className="hover:brightness-125 text-white transition-colors bg-emerald-900 rounded-xl px-6 font-bold active:translate-y-0.5">
-                Claim
-              </button>
+              <Link
+                to="/signup"
+                className="hover:brightness-125 text-white transition-colors bg-emerald-900 rounded-xl px-6 font-bold active:translate-y-0.5 flex items-center"
+              >
+                <button>Claim</button>
+              </Link>
             </div>
           </div>
           <div>
