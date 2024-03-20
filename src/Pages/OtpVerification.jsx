@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { IconArrowLeft, IconShieldLock } from "@tabler/icons-react";
-import { useAppContext } from "../App";
 import OtpInput from "react-otp-input";
+import { useAppContext } from "../App";
 
 function OtpVerification() {
-  const { otp, setOtp, sendOTP,  verifyOtp } = useAppContext();
+  const { verifyOtp, otp, setOtp } = useAppContext();
 
   return (
     <div className="bg-emerald-200 min-h-screen w-screen flex flex-col items-center justify-normal gap-32">
@@ -25,70 +25,20 @@ function OtpVerification() {
             value={otp}
             onChange={setOtp}
             numInputs={6}
-            renderSeparator={<span>-</span>}
-            renderInput={(props) => <input {...props} />}
+            renderSeparator={<span>&nbsp;&nbsp;</span>}
+            inputType="number"
+            renderInput={(props) => (
+              <input
+                {...props}
+                style={undefined}
+                className="rounded-md h-12 w-10 text-center text-2xl font-semibold"
+              />
+            )}
           />
-
-          {/* <div className="flex items-center justify-center rounded-lg gap-4">
-            <input
-              type="number"
-              className="bg-transparent outline-none p-2 text-2xl max-h-10 max-w-7 focus-within:ring-2 ring-black rounded-md flex justify-center items-center bg-white"
-              maxLength="1"
-              max="1"
-              size="1"
-              ref={num1}
-              onChange={(e) => handleOtp1Change(e.target.value)}
-            />
-            <input
-              type="number"
-              className="bg-transparent outline-none p-2 text-2xl max-h-10 max-w-7 focus-within:ring-2 ring-black rounded-md flex justify-center items-center bg-white"
-              maxLength="1"
-              max="1"
-              size="1"
-              ref={num2}
-              onChange={(e) => handleOtp2Change(e.target.value)}
-            />
-            <input
-              type="number"
-              className="bg-transparent outline-none p-2 text-2xl max-h-10 max-w-7 focus-within:ring-2 ring-black rounded-md flex justify-center items-center bg-white"
-              maxLength="1"
-              max="1"
-              size="1"
-              ref={num3}
-              onChange={(e) => handleOtp3Change(e.target.value)}
-            />
-            <input
-              type="number"
-              className="bg-transparent outline-none p-2 text-2xl max-h-10 max-w-7 focus-within:ring-2 ring-black rounded-md flex justify-center items-center bg-white"
-              maxLength="1"
-              max="1"
-              size="1"
-              ref={num4}
-              onChange={(e) => handleOtp4Change(e.target.value)}
-            />
-            <input
-              type="number"
-              className="bg-transparent outline-none p-2 text-2xl max-h-10 max-w-7 focus-within:ring-2 ring-black rounded-md flex justify-center items-center bg-white"
-              maxLength="1"
-              max="1"
-              size="1"
-              ref={num5}
-              onChange={(e) => handleOtp5Change(e.target.value)}
-            />
-            <input
-              type="number"
-              className="bg-transparent outline-none p-2 text-2xl max-h-10 max-w-7 focus-within:ring-2 ring-black rounded-md flex justify-center items-center bg-white"
-              maxLength="1"
-              max="1"
-              size="1"
-              ref={num6}
-              onChange={(e) => handleOtp6Change(e.target.value)}
-            />
-          </div> */}
         </div>
 
         <div>
-          <button onClick={sendOTP}>Resend Otp</button>
+          <button>Resend Otp</button>
         </div>
 
         <div className="flex flex-col items-center justify-center gap-4 w-full">

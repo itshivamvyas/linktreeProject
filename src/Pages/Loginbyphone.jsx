@@ -1,11 +1,39 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { IconArrowLeft, IconPhone } from "@tabler/icons-react";
 import { useAppContext } from "../App";
+import { auth } from "../firebase";
+import toast from "react-hot-toast";
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 
 function Loginbyphone() {
-  const { phoneNumber, setPhoneNumber, sendOTP } =
-    useAppContext();
+const {phoneNumber, setPhoneNumber, otpConfirmationResult, setOtp} = useAppContext()
+
+const navigate = useNavigate()
+
+const sendOtp = async () => {
+  try {
+    const formattedNumber = "+91" + phoneNumber;
+    const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {
+      size: "invisible",
+    });
+
+    otpConfirmationResult.current = await signInWithPhoneNumber(
+      auth,
+      formattedNumber,
+      recaptcha
+    )
+
+    setOtp("")
+    
+    toast.success("Otp Sent Successfully");
+
+    navigate("/otpverification");
+  } catch (error) {
+    toast.error("Something Went Wrong");
+    console.log(error);
+  }
+};
 
   return (
     <div className="bg-emerald-200 min-h-screen w-screen flex flex-col items-center justify-normal gap-32">
@@ -26,6 +54,7 @@ function Loginbyphone() {
           </p>
           <div className="flex items-center rounded-lg px-2 focus-within:ring-2 ring-black bg-white">
             <p className="text-xl">+91</p>
+
             <input
               type="number"
               placeholder="Enter Your Number"
@@ -36,20 +65,22 @@ function Loginbyphone() {
               className="bg-transparent outline-none p-2 text-xl ps-2"
             />
           </div>
+
+          <p>We will send you an SMS with a verification code.</p>
         </div>
 
         <div id="recaptcha" />
 
         <div className="flex flex-col items-center justify-center gap-4 w-full">
-          {/* <Link to="/otpverification" className="w-full"> */}
+
           <button
             id="phone-signin-btn"
-            onClick={sendOTP}
+            onClick={sendOtp}
             className="flex justify-center w-full bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold hover:brightness-125 z-50 transition-transform active:translate-y-0.5"
           >
             Send Code By SMS
           </button>
-          {/* </Link> */}
+
           <div>
             Don't have an account?{" "}
             <span className="text-blue-900 cursor-pointer underline">
