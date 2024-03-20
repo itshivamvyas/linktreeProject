@@ -5,7 +5,10 @@ import Menu from "../DropDown Menu/Menu";
 import { useAppContext } from "../../App";
 
 function Header() {
+  const { user } = useAppContext();
+
   const [showMenu, setShowMenu] = useState(false);
+
 
   const onProfileClick = (e) => {
     e.stopPropagation();
@@ -16,7 +19,6 @@ function Header() {
     setShowMenu(false);
   };
 
-  const { user } = useAppContext();
 
   return (
     <>
