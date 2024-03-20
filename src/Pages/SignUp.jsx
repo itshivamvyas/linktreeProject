@@ -15,12 +15,12 @@ function SignUp() {
       <Link rel="stylesheet" to="/">
         <IconArrowLeft className="absolute top-8 left-10 hover:brightness-125 active:translate-y-0.5 cursor-pointer rounded-full size-8 text-emerald-200 bg-emerald-900" />
       </Link>
-      <div className="flex flex-col justify-center items-center gap-10">
+      <div className="flex flex-col justify-center items-center gap-12">
         <div className="flex flex-col justify-center items-center gap-3">
           <div className="text-5xl font-extrabold text-emerald-900">
             Welcome To MyLinkSet
           </div>
-          <div className="text-xl text-emerald-900">
+          <div className="text-xl font-semibold text-emerald-900">
             Join MyLinkSet Now For Free!
           </div>
         </div>
@@ -58,11 +58,7 @@ function SignUp() {
               </button>
             </Link>
           </div>
-          <p className="text-emerald-900">
-            By clicking Create account, you agree to MyLinkSet Terms and
-            Conditions and confirm <br /> you have read our Privacy Notice. You
-            may receive offers, news and updates from us.
-          </p>
+
           <p className="font-bold">OR</p>
           <button
             onClick={() => loginWithGoogle(usernameInput)}
@@ -72,19 +68,23 @@ function SignUp() {
             SignUp With Google
           </button>
         </div>
-      </div>
 
-      <div className="flex flex-col justify-center items-center gap-3 pt-12">
-        <div>
+        <div className="flex flex-col justify-center items-center">
           <div>
-            Already have an account?
-            <span className="text-blue-900 cursor-pointer underline">
+            Already have an account?{" "}
+            <span className="text-blue-900 hover:underline cursor-pointer font-semibold">
               <Link rel="stylesheet" to="/login">
                 Log in
               </Link>
             </span>
           </div>
         </div>
+
+        <p className="text-emerald-900">
+          By clicking Create account, you agree to MyLinkSet Terms and
+          Conditions and confirm <br /> you have read our Privacy Notice. You
+          may receive offers, news and updates from us.
+        </p>
       </div>
     </div>
   );
