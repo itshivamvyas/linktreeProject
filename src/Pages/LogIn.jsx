@@ -29,12 +29,14 @@ function LogIn() {
       <Link rel="stylesheet" to="/">
         <IconArrowLeft className="absolute top-8 left-10 hover:brightness-125 active:translate-y-0.5 cursor-pointer rounded-full size-8 text-emerald-200 bg-emerald-900" />
       </Link>
-      <div className="flex flex-col justify-center items-center gap-10">
+      <div className="flex flex-col justify-center items-center gap-12">
         <div className="flex flex-col justify-center items-center gap-3">
           <div className="text-5xl font-extrabold text-emerald-900">
             Welcome To MyLinkSet
           </div>
-          <div className="text-xl text-emerald-900">Log in To MyLinkSet</div>
+          <div className="text-xl font-semibold text-emerald-900">
+            Log in To MyLinkSet
+          </div>
         </div>
 
         <div className="flex flex-col justify-center items-center gap-3 w-full">
@@ -42,7 +44,7 @@ function LogIn() {
             type="email"
             value={signInEmailInput}
             onChange={(e) => setSignInEmailInput(e.target.value)}
-            placeholder="Email Or Username"
+            placeholder="Email"
             className="p-3 w-full rounded-lg bg-white outline-none focus-within:ring-2 ring-black"
           />
           <div className="flex items-center bg-white rounded-lg w-full focus-within:ring-2 ring-black">
@@ -78,29 +80,28 @@ function LogIn() {
             Login With Google
           </button>
         </div>
-      </div>
 
-      <div className="flex flex-col justify-center items-center gap-3 pt-12">
-        <div>
+        <div className="flex flex-col justify-center items-center gap-3">
           <div>
-            {/* eslint-disable-next-line react/no-unescaped-entities */}
-            Don't have an account?
-            <span className="text-blue-900 cursor-pointer underline">
-              <Link rel="stylesheet" to="/signup">
-                Sign up
-              </Link>
-            </span>
+            <div>
+              Don't have an account?{" "}
+              <span className="text-blue-900 hover:underline cursor-pointer font-semibold">
+                <Link rel="stylesheet" to="/signup">
+                  Sign Up
+                </Link>
+              </span>
+            </div>
           </div>
-        </div>
 
-        <div>
           <div>
-            You can also log in with a&nbsp;
-            <span className="text-blue-900 cursor-pointer underline">
-              <Link rel="stylesheet" to="/loginbyphone">
-                Phone number
-              </Link>
-            </span>
+            <div>
+              You can also log in with a{" "}
+              <span className="text-blue-900 hover:underline cursor-pointer font-semibold">
+                <Link rel="stylesheet" to="/loginbyphone">
+                  Phone number
+                </Link>
+              </span>
+            </div>
           </div>
         </div>
       </div>
