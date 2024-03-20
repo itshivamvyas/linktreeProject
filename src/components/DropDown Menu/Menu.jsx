@@ -7,10 +7,9 @@ import {
   IconLogout,
 } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
-import { Context } from "../../App";
+import { logout } from "../../firebase/auth";
 
 function Menu({ closeMenu }) {
-  const { logoutUser } = useContext(Context);
 
   useEffect(() => {
     document.body.addEventListener("click", closeMenu);
@@ -61,7 +60,7 @@ function Menu({ closeMenu }) {
 
           <li
             className="flex flex-row gap-3 p-3 cursor-pointer min-w-60 font-semibold hover:bg-black rounded-b-lg hover:text-white active:translate-y-0.5"
-            onClick={logoutUser}
+            onClick={logout}
           >
             <IconLogout /> Logout
           </li>
