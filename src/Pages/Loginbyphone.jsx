@@ -7,97 +7,127 @@ import toast from "react-hot-toast";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 
 function Loginbyphone() {
-const {phoneNumber, setPhoneNumber, otpConfirmationResult, setOtp} = useAppContext()
+  const {
+    phoneNumber,
+    setPhoneNumber,
+    otpConfirmationResult,
+    setOtp,
+    usernameInput,
+    setUsernameInput,
+    buttonLoading,
+    setButtonLoading,
+  } = useAppContext();
 
-const navigate = useNavigate()
+  const navigate = useNavigate();
 
-const sendOtp = async () => {
-  try {
-    const formattedNumber = "+91" + phoneNumber;
-    const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {
-      size: "invisible",
-    });
+  const sendOtp = async () => {
+    try {
+      setButtonLoading(true);
+      const formattedNumber = "+91" + phoneNumber;
+      const recaptcha = new RecaptchaVerifier(auth, "recaptcha", {
+        size: "invisible",
+      });
 
-    otpConfirmationResult.current = await signInWithPhoneNumber(
-      auth,
-      formattedNumber,
-      recaptcha
-    )
-
-    setOtp("")
-    
-    toast.success("Otp Sent Successfully");
-
-    navigate("/otpverification");
-  } catch (error) {
-    toast.error("Something Went Wrong");
-    console.log(error);
-  }
-};
+      otpConfirmationResult.current = await signInWithPhoneNumber(
+        auth,
+        formattedNumber,
+        recaptcha
+      );
+      setOtp("");
+      toast.success("Otp Sent Successfully");
+      setButtonLoading(false)
+      navigate("/otpverification");
+    } catch (error) {
+      toast.error("Something Went Wrong");
+      console.log(error);
+    }
+  };
 
   return (
-    <div className="bg-emerald-200 min-h-screen w-screen flex flex-col items-center justify-normal gap-32">
+    <div className="bg-emerald-200 min-h-screen w-screen flex flex-col items-center justify-center">
       <Link rel="stylesheet" to="/">
         <IconArrowLeft className="absolute top-8 left-10 hover:brightness-125 active:translate-y-0.5 cursor-pointer rounded-full size-8 text-emerald-200 bg-emerald-900" />
       </Link>
-      <div className="flex flex-col items-center justify-center gap-10">
+      <div className="flex flex-col items-center justify-center gap-8">
         <div className="text-5xl font-extrabold text-emerald-900">
           Login To MyLinkSet
         </div>
 
-        <div className="flex flex-col items-center justify-center w-full gap-6">
-          <div className="border-4 p-2 border-emerald-900 rounded-full">
-            <IconPhone className="size-12 text-emerald-900" />
-          </div>
+        <div className="border-4 p-2 border-emerald-900 rounded-full">
+          <IconPhone className="size-12 text-emerald-900" />
+        </div>
+
+        <div className="flex flex-col items-center justify-center w-full gap-2">
           <p className="font-bold text-xl text-emerald-900">
             Verify your phone number
           </p>
-          <div className="flex items-center rounded-lg px-2 focus-within:ring-2 ring-black bg-white">
-            <p className="text-xl">+91</p>
+          <p className="text-emerald-900">
+            We will send you an SMS with a verification code.
+          </p>
+        </div>
 
+        <div className="flex flex-col items-center justify-center w-full gap-2">
+          <div className="flex items-center bg-white rounded-lg p-3 w-full focus-within:ring-2 ring-black">
+            <p>+91</p>
             <input
               type="number"
-              placeholder="Enter Your Number"
+              placeholder="Enter Your Phone Number"
               value={phoneNumber}
               onChange={(e) => {
                 setPhoneNumber(e.target.value.slice(0, 10));
               }}
-              className="bg-transparent outline-none p-2 text-xl ps-2"
+              className="w-full rounded-lg bg-transparent outline-none ps-1"
             />
           </div>
 
-          <p>We will send you an SMS with a verification code.</p>
+          <div className="flex items-center bg-white rounded-lg p-3 w-full focus-within:ring-2 ring-black">
+            <p>mylinkset.vercel.app/</p>
+            <input
+              type="text"
+              placeholder="Username"
+              value={usernameInput}
+              onChange={(e) => {
+                setUsernameInput(e.target.value);
+              }}
+              className="w-full rounded-lg bg-transparent outline-none"
+            />
+          </div>
         </div>
 
-        <div id="recaptcha" />
-
         <div className="flex flex-col items-center justify-center gap-4 w-full">
-
           <button
             id="phone-signin-btn"
             onClick={sendOtp}
-            className="flex justify-center w-full bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold hover:brightness-125 z-50 transition-transform active:translate-y-0.5"
+            disabled={buttonLoading ? true : false}
+            className={`${buttonLoading||phoneNumber.length<10||usernameInput.length<2  ? "bg-gray-400 cursor-not-allowed" : "bg-emerald-900 hover:brightness-125 transition-transform active:translate-y-0.5"} flex justify-center w-full items-center select-none p-3 rounded-full text-white font-bold z-50`}
           >
-            Send Code By SMS
+            {buttonLoading ? "Loading..." : "Send Code By SMS"}
           </button>
+        </div>
 
+        <div className="flex flex-col items-center justify-center w-full gap-2">
           <div>
             Don't have an account?{" "}
-            <span className="text-blue-900 cursor-pointer underline">
+            <span className="text-blue-900 hover:underline cursor-pointer font-semibold">
               <Link rel="stylesheet" to="/signup">
                 Sign up
               </Link>
             </span>
           </div>
-          <div>
-            <span className="text-blue-900 cursor-pointer text-sm underline">
-              <Link rel="stylesheet" to="/login">
-                Login With Username
-              </Link>
-            </span>
+
+          <div className="flex items-center justify-center w-full">
+            <div>
+              Login With{" "}
+              <span className="text-blue-900 hover:underline cursor-pointer font-semibold">
+                <Link rel="stylesheet" to="/login">
+                  Email And Password
+                </Link>
+              </span>
+            </div>
           </div>
-          <div id="recaptcha" />
         </div>
+
+        <div id="recaptcha" />
       </div>
     </div>
   );
