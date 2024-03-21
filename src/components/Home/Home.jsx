@@ -1,8 +1,48 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppContext } from "../../App";
+import { useState } from "react";
+import { getDocs, query, where } from "firebase/firestore";
+import { usersDetailRef } from "../../firebase/firestore";
+import ButtonLoading from "../ButtonLoading/ButtonLoading";
 
 function Home() {
   const { usernameInput, setUsernameInput } = useAppContext();
+  const [usernameError, setUsernameError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
+  const usernameCheck = async (value) => {
+    setUsernameInput(value);
+    if (usernameError === "") {
+      return;
+    }
+    if (value.length < 3) {
+      setUsernameError(true);
+      return;
+    }
+    setUsernameError(false);
+    setIsLoading(true);
+
+    try {
+      const data = await getDocs(
+        query(usersDetailRef, where("username", "==", value))
+      );
+
+      setIsLoading(false);
+
+      if (!data.empty) {
+        setUsernameError(true);
+        return;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onClaim = () => {
+    navigate("/signup");
+  };
+
   return (
     <div>
       <div>
@@ -39,30 +79,55 @@ function Home() {
               landing page with all your important links, accessible from one
               central URL in your bio.
             </p>
-            <div className="flex gap-4 h-12">
-              <div className="flex items-center rounded-xl px-6 bg-white/80 border-2 border-emerald-900">
-                <p className="">mylinkset.vercel.app/</p>
-                <input
-                  type="text"
-                  value={usernameInput}
-                  onChange={(e) => {
-                    setUsernameInput(e.target.value);
-                  }}
-                  placeholder="Claim Your Username"
-                  className="bg-transparent outline-none"
-                />
+            <div className="flex flex-col gap-3">
+              <div>
+                <div className="flex gap-4 h-12">
+                  <div
+                    className={`flex items-center rounded-xl px-6 bg-white/80 border-2 ${
+                      usernameError ? "border-red-600" : "border-emerald-900"
+                    }`}
+                  >
+                    <p className="">mylinkset.vercel.app/</p>
+                    <input
+                      type="text"
+                      value={usernameInput}
+                      onChange={(e) => {
+                        usernameCheck(e.target.value);
+                      }}
+                      placeholder="Claim Your Username"
+                      className="bg-transparent outline-none"
+                    />
+                  </div>
+                  <button
+                    className="w-24 hover:brightness-125 text-white transition-colors bg-emerald-900 rounded-xl px-6 font-bold active:translate-y-0.5 flex items-center"
+                    onClick={onClaim}
+                  >
+                    {isLoading ? <ButtonLoading /> : "Claim"}
+                  </button>
+                </div>
               </div>
-              <Link
-                to="/signup"
-                className="hover:brightness-125 text-white transition-colors bg-emerald-900 rounded-xl px-6 font-bold active:translate-y-0.5 flex items-center"
-              >
-                <button>Claim</button>
-              </Link>
+              <div>
+                {usernameInput === "" ? (
+                  ""
+                ) : usernameError ? (
+                  <p className="text-red-600 font-semibold ps-1">
+                    Username is unavailable
+                  </p>
+                ) : (
+                  <p className="text-emerald-900 font-bold ps-1">
+                    Username is Available
+                  </p>
+                )}
+              </div>
             </div>
           </div>
 
           <div>
-            <img src="./mylinkset.png" alt="mylinkset" className="w-auto h-96 pt-14"/>
+            <img
+              src="./mylinkset.png"
+              alt="mylinkset"
+              className="w-auto h-96 pt-14"
+            />
           </div>
         </div>
       </div>
