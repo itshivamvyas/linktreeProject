@@ -14,12 +14,11 @@ function Loginbyphone() {
     otpConfirmationResult,
     setOtp,
     usernameInput,
-    setUsernameInput,
-    buttonLoading,
-    setButtonLoading,
+    setUsernameInput
   } = useAppContext();
 
   const navigate = useNavigate();
+  const [buttonLoading, setButtonLoading] = useState(false)
 
   const sendOtp = async () => {
     try {

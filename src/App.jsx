@@ -25,7 +25,6 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
-  const [buttonLoading, setButtonLoading] = useState(false)
   const [
     signUpWithEmailAndPasswordEmailInput,
     setSignUpWithEmailAndPasswordEmailInput,
@@ -95,9 +94,7 @@ function App() {
     signUpWithEmailAndPasswordEmailInput,
     setSignUpWithEmailAndPasswordEmailInput,
     usernameInput,
-    setUsernameInput,
-    buttonLoading,
-    setButtonLoading
+    setUsernameInput
   };
 
   if (isLoading) {
