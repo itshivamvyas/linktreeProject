@@ -5,6 +5,7 @@ import { useAppContext } from "../App";
 import { auth } from "../firebase";
 import toast from "react-hot-toast";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import ButtonLoading from "../components/ButtonLoading/ButtonLoading";
 
 function Loginbyphone() {
   const {
@@ -35,7 +36,7 @@ function Loginbyphone() {
       );
       setOtp("");
       toast.success("Otp Sent Successfully");
-      setButtonLoading(false)
+      setButtonLoading(false);
       navigate("/otpverification");
     } catch (error) {
       toast.error("Something Went Wrong");
@@ -97,11 +98,19 @@ function Loginbyphone() {
         <div className="flex flex-col items-center justify-center gap-4 w-full">
           <button
             id="phone-signin-btn"
+            disabled={
+              buttonLoading ||
+              phoneNumber.length < 10 ||
+              usernameInput.length < 2
+            }
             onClick={sendOtp}
-            disabled={buttonLoading ? true : false}
-            className={`${buttonLoading||phoneNumber.length<10||usernameInput.length<2  ? "bg-gray-400 cursor-not-allowed" : "bg-emerald-900 hover:brightness-125 transition-transform active:translate-y-0.5"} flex justify-center w-full items-center select-none p-3 rounded-full text-white font-bold z-50`}
+            className={`${
+              phoneNumber.length < 10 || usernameInput.length < 2
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:brightness-125 transition-transform active:translate-y-0.5"
+            } bg-emerald-900 flex justify-center w-full items-center select-none p-3 rounded-full text-white font-bold z-50`}
           >
-            {buttonLoading ? "Loading..." : "Send Code By SMS"}
+            {buttonLoading ? <ButtonLoading /> : "Send Code By SMS"}
           </button>
         </div>
 
