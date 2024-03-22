@@ -6,7 +6,6 @@ import { useAppContext } from "../../App";
 
 function Header() {
   const { user } = useAppContext();
-
   const [showMenu, setShowMenu] = useState(false);
 
 
