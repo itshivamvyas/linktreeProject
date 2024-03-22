@@ -15,10 +15,13 @@ function SignUp() {
     setSignUpEmailInput,
     usernameInput,
     setUsernameInput,
+    name,
+    setName,
   } = useAppContext();
   const navigate = useNavigate();
   const [usernameError, setUsernameError] = useState(false);
   const [emailInputError, setEmailInputError] = useState(false);
+  const [nameError, setNameError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isGoogleButtonLoading, setIsGoogleButtonLoading] = useState(false);
 
@@ -51,7 +54,13 @@ function SignUp() {
       setEmailInputError(true);
       setIsLoading(false);
       return;
-    } else {
+    }
+    if(name === ""){
+      setNameError(true)
+      setIsLoading(false);
+      return;
+    }
+    else {
       navigate("/createpassword");
     }
   };
@@ -108,6 +117,19 @@ function SignUp() {
             }}
             className={`${
               emailInputError ? "ring-2 ring-red-600 text-red-600" : ""
+            } p-3 w-full rounded-lg bg-white outline-none focus-within:ring-2 ring-black`}
+          />
+
+          <input
+            type="text"
+            placeholder="Enter Your Full Name"
+            value={name}
+            onChange={(e) => {
+              setNameError(false);
+              setName(e.target.value);
+            }}
+            className={`${
+              nameError ? "ring-2 ring-red-600 text-red-600" : ""
             } p-3 w-full rounded-lg bg-white outline-none focus-within:ring-2 ring-black`}
           />
 
@@ -175,7 +197,7 @@ function SignUp() {
           </button>
         </div>
 
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center gap-2">
           <div>
             Already have an account?{" "}
             <span className="text-blue-900 hover:underline cursor-pointer font-semibold">
@@ -184,13 +206,17 @@ function SignUp() {
               </Link>
             </span>
           </div>
+          <div>
+            <div>
+              You can also Sign Up with a{" "}
+              <span className="text-blue-900 hover:underline cursor-pointer font-semibold">
+                <Link rel="stylesheet" to="/loginbyphone">
+                  Phone number
+                </Link>
+              </span>
+            </div>
+          </div>
         </div>
-
-        <p className="text-emerald-900">
-          By clicking Create account, you agree to MyLinkSet Terms and
-          Conditions and confirm <br /> you have read our Privacy Notice. You
-          may receive offers, news and updates from us.
-        </p>
       </div>
     </div>
   );
