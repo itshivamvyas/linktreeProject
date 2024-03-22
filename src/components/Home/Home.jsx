@@ -92,15 +92,16 @@ function Home() {
                       type="text"
                       value={usernameInput}
                       onChange={(e) => {
-                        usernameCheck(e.target.value);
+                        usernameCheck(e.target.value.replace(/[^a-zA-Z0-9_]/g, ''));
                       }}
                       placeholder="Claim Your Username"
                       className="bg-transparent outline-none"
                     />
                   </div>
                   <button
-                    className="w-24 hover:brightness-125 text-white transition-colors bg-emerald-900 rounded-xl px-6 font-bold active:translate-y-0.5 flex items-center"
+                    className={`${usernameInput === "" || usernameError ? "cursor-not-allowed bg-emerald-500 brightness-75": "cursor-pointer hover:brightness-125 bg-emerald-900"} w-24  text-white transition-colors rounded-xl px-6 font-bold active:translate-y-0.5 flex items-center justify-center`}
                     onClick={onClaim}
+                    disabled={usernameInput === "" || usernameError}
                   >
                     {isLoading ? <ButtonLoading /> : "Claim"}
                   </button>
@@ -111,11 +112,11 @@ function Home() {
                   ""
                 ) : usernameError ? (
                   <p className="text-red-600 font-semibold ps-1">
-                    Username is unavailable
+                    Oh No, Username is unavailable or Taken by other User
                   </p>
                 ) : (
                   <p className="text-emerald-900 font-bold ps-1">
-                    Username is Available
+                    Wow! Username is Available
                   </p>
                 )}
               </div>
