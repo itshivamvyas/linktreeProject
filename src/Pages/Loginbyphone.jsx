@@ -15,13 +15,21 @@ function Loginbyphone() {
     otpConfirmationResult,
     setOtp,
     usernameInput,
-    setUsernameInput
+    setUsernameInput,
+    name,
+    setName,
   } = useAppContext();
 
   const navigate = useNavigate();
-  const [buttonLoading, setButtonLoading] = useState(false)
+  const [buttonLoading, setButtonLoading] = useState(false);
+  const [usernameError, setUsernameError] = useState(false);
+  const [nameError, setNameError] = useState(false);
 
   const sendOtp = async () => {
+    if (name === "") {
+      setNameError(true);
+      return;
+    }
     try {
       setButtonLoading(true);
       const formattedNumber = "+91" + phoneNumber;
@@ -39,9 +47,32 @@ function Loginbyphone() {
       setButtonLoading(false);
       navigate("/otpverification");
     } catch (error) {
-      toast.error("Something Went Wrong");
-      console.log(error);
+      toast.error(error.code);
     }
+  };
+
+  const usernameCheck = async (value) => {
+    setUsernameInput(value);
+
+    if (usernameError === "") {
+      return;
+    }
+    if (value.length < 3) {
+      setUsernameError(true);
+      return;
+    }
+    setUsernameError(false);
+
+    try {
+      const data = await getDocs(
+        query(usersDetailRef, where("username", "==", value))
+      );
+
+      if (!data.empty) {
+        setUsernameError(true);
+        return;
+      }
+    } catch (error) {}
   };
 
   return (
@@ -81,17 +112,47 @@ function Loginbyphone() {
             />
           </div>
 
-          <div className="flex items-center bg-white rounded-lg p-3 w-full focus-within:ring-2 ring-black">
-            <p>mylinkset.vercel.app/</p>
+          <input
+            type="text"
+            placeholder="Enter Your Full Name"
+            value={name}
+            onChange={(e) => {
+              setNameError(false);
+              setName(e.target.value);
+            }}
+            className={`${
+              nameError ? "ring-2 ring-red-600 text-red-600" : ""
+            } p-3 w-full rounded-lg bg-white outline-none focus-within:ring-2 ring-black`}
+          />
+
+          <div
+            className={`${
+              usernameError ? "ring-2 ring-red-600" : ""
+            } flex items-center bg-white rounded-lg p-3 w-full focus-within:ring-2 ring-black`}
+          >
+            <p className="">mylinkset.vercel.app/</p>
             <input
               type="text"
               placeholder="Username"
               value={usernameInput}
               onChange={(e) => {
-                setUsernameInput(e.target.value);
+                usernameCheck(e.target.value.replace(/[^a-zA-Z0-9_]/g, ""));
               }}
               className="w-full rounded-lg bg-transparent outline-none"
             />
+          </div>
+          <div className="w-full float-left">
+            {usernameInput === "" ? (
+              ""
+            ) : usernameError ? (
+              <p className="text-red-600 font-semibold ps-1">
+                Oh No, Username is unavailable or Taken by other User
+              </p>
+            ) : (
+              <p className="text-emerald-900 font-bold ps-1">
+                Wow! Username is Available
+              </p>
+            )}
           </div>
         </div>
 
@@ -101,11 +162,11 @@ function Loginbyphone() {
             disabled={
               buttonLoading ||
               phoneNumber.length < 10 ||
-              usernameInput.length < 2
+              usernameInput.length < 3
             }
             onClick={sendOtp}
             className={`${
-              phoneNumber.length < 10 || usernameInput.length < 2
+              phoneNumber.length < 10 || usernameInput.length < 3
                 ? "opacity-50 cursor-not-allowed"
                 : "hover:brightness-125 transition-transform active:translate-y-0.5"
             } bg-emerald-900 flex justify-center w-full items-center select-none p-3 rounded-full text-white font-bold z-50`}
