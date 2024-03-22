@@ -19,9 +19,9 @@ function SignUp() {
     setName,
   } = useAppContext();
   const navigate = useNavigate();
-  const [usernameError, setUsernameError] = useState(false);
   const [emailInputError, setEmailInputError] = useState(false);
   const [nameError, setNameError] = useState(false);
+  const [usernameError, setUsernameError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isGoogleButtonLoading, setIsGoogleButtonLoading] = useState(false);
 

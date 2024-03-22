@@ -52,13 +52,13 @@ function App() {
 
       toast.success("Login Successful");
       setVerifyOtpLoading(false);
-
       setOtp("");
       setPhoneNumber("");
+      setName("");
+      usernameInput("");
     } catch (error) {
       toast.error("Invalid OTP");
       setVerifyOtpLoading(false);
-      console.log(error);
     }
   };
 
