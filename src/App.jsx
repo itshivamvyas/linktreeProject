@@ -23,12 +23,11 @@ function App() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [verifyOtpLoading, setVerifyOtpLoading] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
-  const [
-    signInPasswordInput,
-    setSignInPasswordInput
-  ] = useState("");
+  const [signUpEmailInput, setSignUpEmailInput] = useState("");
+  const [name, setName] = useState("");
   const [usernameInput, setUsernameInput] = useState("");
   const [linksData, setLinksData] = useState(() => {
     const stored = localStorage.getItem("links");
@@ -44,6 +43,7 @@ function App() {
   };
 
   const verifyOtp = async () => {
+    setVerifyOtpLoading(true);
     try {
       const u = await otpConfirmationResult.current.confirm(otp);
       await addOrUpdateUserDetail(u.user.uid, {
@@ -51,11 +51,13 @@ function App() {
       });
 
       toast.success("Login Successful");
+      setVerifyOtpLoading(false);
 
       setOtp("");
       setPhoneNumber("");
     } catch (error) {
       toast.error("Invalid OTP");
+      setVerifyOtpLoading(false);
       console.log(error);
     }
   };
@@ -69,7 +71,11 @@ function App() {
     auth.onAuthStateChanged(async (u) => {
       if (u) {
         // console.log(await getUserDetailData(u.uid))
-        setUser({ name: u.displayName, picture: u.photoURL, email: u.email });
+        setUser({
+          name: u.displayName || name,
+          picture: u.photoURL,
+          email: u.email,
+        });
       } else {
         setUser(null);
       }
@@ -91,10 +97,13 @@ function App() {
     phoneNumber,
     setPhoneNumber,
     otpConfirmationResult: otpConfirmationResult,
-    signInPasswordInput,
-    setSignInPasswordInput,
+    signUpEmailInput,
+    setSignUpEmailInput,
     usernameInput,
-    setUsernameInput
+    setUsernameInput,
+    name,
+    setName,
+    verifyOtpLoading,
   };
 
   if (isLoading) {
