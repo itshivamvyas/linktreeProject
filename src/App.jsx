@@ -26,8 +26,8 @@ function App() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState("");
   const [
-    signUpWithEmailAndPasswordEmailInput,
-    setSignUpWithEmailAndPasswordEmailInput,
+    signInPasswordInput,
+    setSignInPasswordInput
   ] = useState("");
   const [usernameInput, setUsernameInput] = useState("");
   const [linksData, setLinksData] = useState(() => {
@@ -91,8 +91,8 @@ function App() {
     phoneNumber,
     setPhoneNumber,
     otpConfirmationResult: otpConfirmationResult,
-    signUpWithEmailAndPasswordEmailInput,
-    setSignUpWithEmailAndPasswordEmailInput,
+    signInPasswordInput,
+    setSignInPasswordInput,
     usernameInput,
     setUsernameInput
   };
