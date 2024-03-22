@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { IconArrowLeft, IconShieldLock } from "@tabler/icons-react";
 import OtpInput from "react-otp-input";
 import { useAppContext } from "../App";
+import ButtonLoading from "../components/ButtonLoading/ButtonLoading";
 
 function OtpVerification() {
-  const { verifyOtp, otp, setOtp, phoneNumber } = useAppContext();
+  const { verifyOtp, otp, setOtp, phoneNumber, verifyOtpLoading } = useAppContext();
 
   return (
     <div className="bg-emerald-200 min-h-screen w-screen flex flex-col items-center justify-normal gap-32">
@@ -51,7 +52,7 @@ function OtpVerification() {
             onClick={verifyOtp}
             className="flex justify-center w-full bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold hover:brightness-125 z-50 transition-transform active:translate-y-0.5"
           >
-            Verify
+            {verifyOtpLoading ? <ButtonLoading/> : "Verify"}
           </button>
         </div>
       </div>
