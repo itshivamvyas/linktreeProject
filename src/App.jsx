@@ -48,6 +48,8 @@ function App() {
       const u = await otpConfirmationResult.current.confirm(otp);
       await addOrUpdateUserDetail(u.user.uid, {
         phone: u.user.phoneNumber,
+        username: usernameInput,
+        name: name
       });
 
       toast.success("Login Successful");
