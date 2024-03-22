@@ -7,13 +7,20 @@ import {
   IconArrowLeft,
 } from "@tabler/icons-react";
 import { useAppContext } from "../App";
-import { loginWithGoogle, logInWithEmailPassword } from "../firebase/auth";
+import { toast } from "react-hot-toast";
+import ButtonLoading from "../components/ButtonLoading/ButtonLoading";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 function LogIn() {
   const [signInEmailInput, setSignInEmailInput] = useState("");
   const { signInPasswordInput, setSignInPasswordInput, usernameInput } =
     useAppContext();
   const [maskPassword, setMaskPassword] = useState("password");
+
+const [isLoading, setIsLoading] = useState(false)
+const [emailInputError, setEmailInputError] = useState(false)
+const [passwordInputError, setPasswordInputError] = useState(false)
+
   const togglePasswordVisibility = () => {
     setMaskPassword(maskPassword === "password" ? "text" : "password");
   };
@@ -23,6 +30,35 @@ function LogIn() {
     setPasswordShowIcon(!passwordShowIcon);
     togglePasswordVisibility();
   };
+
+  const emailCheck = () => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(signInEmailInput);
+  }
+
+  async function logInWithEmailPassword(email, password) {
+    if(!emailCheck()){
+      setEmailInputError(true)
+      return;
+    }
+
+    if(signInPasswordInput.length < 6){
+      setPasswordInputError(true)
+      return;
+    }
+    try {
+      setIsLoading(true)
+      const u = await signInWithEmailAndPassword(auth, email, password);
+      await addOrUpdateUserDetail(u.user.uid, {
+        email: u.user.email,
+      });
+      toast.success("Login Successful");
+      setIsLoading(false)
+    } catch (error) {
+      console.log(error);
+      toast.error("Invalid Email And Password");
+    }
+  }
 
   return (
     <div className="bg-emerald-200 min-h-screen w-screen flex flex-col items-center justify-center">
@@ -43,23 +79,26 @@ function LogIn() {
           <input
             type="email"
             value={signInEmailInput}
-            onChange={(e) => setSignInEmailInput(e.target.value)}
+            onChange={(e) => {
+              setEmailInputError(false)
+              setSignInEmailInput(e.target.value)}}
             placeholder="Email"
-            className="p-3 w-full rounded-lg bg-white outline-none focus-within:ring-2 ring-black"
+            className={`${emailInputError ? "text-red-600 ring-2 ring-red-600":""} p-3 w-full rounded-lg bg-white outline-none focus-within:ring-2 ring-black`}
           />
           <div className="flex items-center bg-white rounded-lg w-full focus-within:ring-2 ring-black">
             <input
               type={maskPassword}
               value={signInPasswordInput}
-              onChange={(e) => setSignInPasswordInput(e.target.value)}
+              onChange={(e) => {setSignInPasswordInput(e.target.value)}}
               placeholder="Password"
-              className="p-3 w-full rounded-lg bg-white outline-none"
+              className={`${passwordInputError ? "ring-2 ring-red-600 text-red-600":""} p-3 w-full rounded-lg bg-white outline-none`}
             />
             <IconReplace
               onClick={OnclickPasswordButton}
               className="cursor-pointer mr-3"
             />
           </div>
+          {passwordInputError && <p className="font-semibold text-red-600">Password must be at least 6 characters long</p>}
         </div>
 
         <div className="flex flex-col justify-center items-center gap-3 w-full">
@@ -69,7 +108,7 @@ function LogIn() {
             }
             className="flex justify-center bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5"
           >
-            Log In
+            {isLoading ? <ButtonLoading/> : "Log In"}
           </button>
           <p className="font-bold">OR</p>
           <button
