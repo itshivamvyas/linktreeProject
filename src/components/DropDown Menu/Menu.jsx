@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useEffect} from "react";
 import {
   IconPhoneCall,
   IconRobot,
@@ -7,9 +7,14 @@ import {
   IconLogout,
 } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
-import { logout } from "../../firebase/auth";
+import { auth } from "../../firebase";
+import { toast } from "react-hot-toast";
 
 function Menu({ closeMenu }) {
+   async function logout() {
+    await auth.signOut();
+    toast.success("You have successfully logged out!")
+  }
 
   useEffect(() => {
     document.body.addEventListener("click", closeMenu);
