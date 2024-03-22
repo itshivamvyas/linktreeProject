@@ -7,6 +7,8 @@ import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import ButtonLoading from "../components/ButtonLoading/ButtonLoading";
 import { useState } from "react";
 import { auth } from "../firebase";
+import { getDocs, query, where } from "firebase/firestore";
+import { usersDetailRef } from "../firebase/firestore";
 
 function Loginbyphone() {
   const {
@@ -53,7 +55,6 @@ function Loginbyphone() {
 
   const usernameCheck = async (value) => {
     setUsernameInput(value);
-
     if (usernameError === "") {
       return;
     }
