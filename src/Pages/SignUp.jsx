@@ -11,8 +11,8 @@ import { signInWithPopup } from "firebase/auth";
 
 function SignUp() {
   const {
-    signUpWithEmailAndPasswordEmailInput,
-    setSignUpWithEmailAndPasswordEmailInput,
+    signUpEmailInput,
+    setSignUpEmailInput,
     usernameInput,
     setUsernameInput,
   } = useAppContext();
@@ -37,13 +37,12 @@ function SignUp() {
     } catch (error) {
       setIsGoogleButtonLoading(false);
       toast.error(error.code);
-      console.log(error)
     }
   };
 
   const emailCheck = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(signUpWithEmailAndPasswordEmailInput);
+    return regex.test(signUpEmailInput);
   };
 
   const onClick = () => {
@@ -80,9 +79,7 @@ function SignUp() {
         setUsernameError(true);
         return;
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   return (
@@ -104,10 +101,10 @@ function SignUp() {
           <input
             type="email"
             placeholder="Email"
-            value={signUpWithEmailAndPasswordEmailInput}
+            value={signUpEmailInput}
             onChange={(e) => {
               setEmailInputError(false);
-              setSignUpWithEmailAndPasswordEmailInput(e.target.value);
+              setSignUpEmailInput(e.target.value);
             }}
             className={`${
               emailInputError ? "ring-2 ring-red-600 text-red-600" : ""
