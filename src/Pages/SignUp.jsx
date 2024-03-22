@@ -4,7 +4,7 @@ import { useAppContext } from "../App";
 import { useState } from "react";
 import ButtonLoading from "../components/ButtonLoading/ButtonLoading";
 import { getDocs, query, where } from "firebase/firestore";
-import { usersDetailRef } from "../firebase/firestore";
+import { addOrUpdateUserDetail, usersDetailRef } from "../firebase/firestore";
 import { auth, provider } from "../firebase";
 import toast from "react-hot-toast";
 import { signInWithPopup } from "firebase/auth";
@@ -22,7 +22,7 @@ function SignUp() {
   const [isLoading, setIsLoading] = useState(false);
   const [isGoogleButtonLoading, setIsGoogleButtonLoading] = useState(false);
 
-  const loginWithGoogle = async (usernameInput) => {
+  const loginWithGoogle = async () => {
     setIsGoogleButtonLoading(true);
     try {
       const u = await signInWithPopup(auth, provider);
@@ -37,6 +37,7 @@ function SignUp() {
     } catch (error) {
       setIsGoogleButtonLoading(false);
       toast.error(error.code);
+      console.log(error)
     }
   };
 
@@ -163,7 +164,7 @@ function SignUp() {
 
           <p className="font-bold">OR</p>
           <button
-            onClick={() => loginWithGoogle(usernameInput)}
+            onClick={() => loginWithGoogle()}
             className="flex justify-center gap-3 bg-emerald-900 h-12 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5"
           >
             {isGoogleButtonLoading ? (
