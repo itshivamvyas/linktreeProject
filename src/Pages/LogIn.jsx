@@ -9,7 +9,7 @@ import {
 import { useAppContext } from "../App";
 import { toast } from "react-hot-toast";
 import ButtonLoading from "../components/ButtonLoading/ButtonLoading";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { addOrUpdateUserDetail } from "../firebase/firestore";
 import { auth, provider } from "../firebase";
 
@@ -23,6 +23,7 @@ function LogIn() {
   const [passwordInputError, setPasswordInputError] = useState(false);
   const [isGoogleButtonLoading, setIsGoogleButtonLoading] = useState(false);
   const [passwordShowIcon, setPasswordShowIcon] = useState(false);
+  const [resetPasswordLoading, setResetPasswordLoading] = useState(false);
 
   const togglePasswordVisibility = () => {
     setMaskPassword(maskPassword === "password" ? "text" : "password");
@@ -84,6 +85,25 @@ function LogIn() {
     }
   }
 
+  const resetPassword = () => {
+    if (!emailCheck()) {
+      setEmailInputError(true);
+      return;
+    }
+    setResetPasswordLoading(true)
+    sendPasswordResetEmail(auth, logInEmailInput)
+      .then(() => {
+        toast.success("Password reset email sent!");
+        setResetPasswordLoading(false)
+        setEmailInputError(false)
+      })
+      .catch((error) => {
+        toast.error(error.message);
+        toast.error(error.code);
+        // ..
+      });
+  };
+
   return (
     <div className="bg-emerald-200 min-h-screen w-screen flex flex-col items-center justify-center">
       <Link rel="stylesheet" to="/">
@@ -132,6 +152,12 @@ function LogIn() {
               className="cursor-pointer mr-3"
             />
           </div>
+          <button
+            onClick={resetPassword}
+            className="text-blue-900 font-semibold float-left ps-1 cursor-pointer outline-none hover:text-blue-600 transition-transform active:translate-y-0.5"
+          >
+            {resetPasswordLoading ? <ButtonLoading/> : "Forgot Password?"}
+          </button>
           <div className="w-full float-left">
             {passwordInputError && (
               <p className="font-semibold text-red-600">
