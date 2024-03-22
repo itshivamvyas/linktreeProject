@@ -6,24 +6,46 @@ import { useAppContext } from "../App";
 import { toast } from "react-hot-toast";
 import { auth } from "../firebase";
 import { addOrUpdateUserDetail } from "../firebase/firestore";
+import ButtonLoading from "../components/ButtonLoading/ButtonLoading";
 
 function Createpassword() {
-  const { signUpWithEmailAndPasswordEmailInput, usernameInput } =
-    useAppContext();
+  const { signUpEmailInput, usernameInput, name } = useAppContext();
+  const [passwordInputError, setPasswordInputError] = useState(false)
+  const [inputRegexError, setInputRegexError] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [
-    signUpWithEmailAndPasswordPasswordInput,
-    setSignUpWithEmailAndPasswordPasswordInput,
+    signUpPasswordInput,
+    setSignUpPasswordInput,
   ] = useState("");
 
+  const passwordCheck = () => {
+    const regex = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
+    return regex.test(signUpPasswordInput);
+  };
+
   const onSubmit = async (email, password) => {
+    if(signUpPasswordInput.length < 6){
+      setPasswordInputError(true)
+      return;
+    }
+    if (!passwordCheck()) {
+      setInputRegexError(true);
+      setIsLoading(false);
+      return;
+    }
+    setIsLoading(true)
     try {
       const u = await createUserWithEmailAndPassword(auth, email, password);
       await addOrUpdateUserDetail(u.user.uid, {
         email: u.user.email,
         username: usernameInput,
+        name: name
       });
+      setIsLoading(false)
+      toast.success(`Thanks for Join! ${name}`)
     } catch (error) {
-      toast.error("Something went wrong try again after sometime");
+      setIsLoading(false)
+      toast.error("Something went wrong! try again after sometime");
       console.log(error);
     }
   };
@@ -39,32 +61,36 @@ function Createpassword() {
             Create a Strong Password
           </div>
           <div className="text-xl text-emerald-900">
-            Create a strong password with at least 8 characters.
+            Create a strong password with at least 6 characters.
           </div>
         </div>
 
         <div className="flex flex-col justify-center items-center gap-3 w-full">
-          <div className="flex items-center bg-white rounded-lg w-full focus-within:ring-2 ring-black">
+          <div className={`${passwordInputError ? "ring-2 ring-red-600 text-red-600":""} flex items-center bg-white rounded-lg w-full focus-within:ring-2 ring-black`}>
             <input
               type="password"
               onChange={(e) => {
-                setSignUpWithEmailAndPasswordPasswordInput(e.target.value);
+                setInputRegexError(false)
+                setPasswordInputError(false)
+                setSignUpPasswordInput(e.target.value);
               }}
-              value={signUpWithEmailAndPasswordPasswordInput}
+              value={signUpPasswordInput}
               placeholder="Create Password"
               className="p-3 w-full rounded-lg bg-white outline-none"
             />
           </div>
 
-          <div className="flex items-center bg-white rounded-lg w-full focus-within:ring-2 ring-black">
+          <div className={`${passwordInputError ? "ring-2 ring-red-600 text-red-600":""} flex items-center bg-white rounded-lg w-full focus-within:ring-2 ring-black`}>
             <input
               type="text"
-              defaultValue={signUpWithEmailAndPasswordPasswordInput}
+              defaultValue={signUpPasswordInput}
               disabled
               placeholder="Confirm Password"
               className="p-3 w-full rounded-lg bg-white outline-none"
             />
           </div>
+          {passwordInputError && <p className="text-red-600 float-left w-full font-semibold">Password is too Shorter!</p>}
+          {inputRegexError && <p className="text-red-600 float-left w-full font-semibold">Ensures that the password contains at least one numeric digit and at least one alphabet character.</p>}
         </div>
 
         <div className="flex flex-col justify-center items-center gap-3 w-full">
@@ -72,13 +98,13 @@ function Createpassword() {
             <button
               onClick={() =>
                 onSubmit(
-                  signUpWithEmailAndPasswordEmailInput,
-                  signUpWithEmailAndPasswordPasswordInput
+                  signUpEmailInput,
+                  signUpPasswordInput
                 )
               }
               className="flex justify-center bg-emerald-900 items-center select-none p-3 rounded-full text-white font-bold w-full hover:brightness-125 z-50 transition-transform active:translate-y-0.5"
             >
-              Create Password
+              {isLoading ? <ButtonLoading/> : "Create Password"}
             </button>
           </div>
         </div>
