@@ -55,12 +55,11 @@ function SignUp() {
       setIsLoading(false);
       return;
     }
-    if(name === ""){
-      setNameError(true)
+    if (name === "") {
+      setNameError(true);
       setIsLoading(false);
       return;
-    }
-    else {
+    } else {
       navigate("/createpassword");
     }
   };
@@ -76,14 +75,12 @@ function SignUp() {
       return;
     }
     setUsernameError(false);
-    setIsLoading(true);
 
     try {
       const data = await getDocs(
         query(usersDetailRef, where("username", "==", value))
       );
 
-      setIsLoading(false);
       if (!data.empty) {
         setUsernameError(true);
         return;
