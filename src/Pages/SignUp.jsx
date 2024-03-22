@@ -143,7 +143,7 @@ function SignUp() {
               onChange={(e) => {
                 usernameCheck(e.target.value.replace(/[^a-zA-Z0-9_]/g, ""));
               }}
-              className="w-full rounded-lg bg-transparent outline-none"
+              className="w-full bg-transparent outline-none"
             />
           </div>
           <div className="w-full float-left">
