@@ -7,12 +7,9 @@ function Userdetails() {
   const {user} = useAppContext()
   return (
     <div className="bg-emerald-200 min-h-screen w-screen flex flex-col items-center justify-center">
-      <Link rel="stylesheet" to="/">
-        <IconArrowLeft className="absolute top-8 left-10 hover:brightness-125 active:translate-y-0.5 cursor-pointer rounded-full size-8 text-emerald-200 bg-emerald-900" />
-      </Link>
       <div className="flex flex-col justify-center items-center w-full">
         <div>
-          <img src="./user.png" alt="user" className="size-60 cursor-pointer rounded-full" />
+          {user ? <img src={user.picture} alt="User" className="rounded-full size-36"/> : <img src="./user.png" alt="user" className="size-60 cursor-pointer rounded-full" />}
         </div>
         <div action="" className="flex flex-col gap-16 min-w-[700px] p-6">
             <div className="flex flex-col gap-6">
@@ -22,6 +19,7 @@ function Userdetails() {
               <input
                 type="text"
                 id="name"
+                // {user.name && value={user.name}
                 placeholder="Enter Your Name"
                 className="p-3 rounded-xl bg-slate-100 outline-none focus-within:ring-2 ring-black"
               />

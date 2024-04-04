@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   IconBrandGoogleFilled,
   IconEye,
@@ -9,7 +9,11 @@ import {
 import { useAppContext } from "../App";
 import { toast } from "react-hot-toast";
 import ButtonLoading from "../components/ButtonLoading/ButtonLoading";
-import { sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
 import { addOrUpdateUserDetail } from "../firebase/firestore";
 import { auth, provider } from "../firebase";
 
@@ -25,6 +29,7 @@ function LogIn() {
   const [passwordShowIcon, setPasswordShowIcon] = useState(false);
   const [resetPasswordLoading, setResetPasswordLoading] = useState(false);
 
+  const navigate = useNavigate()
   const togglePasswordVisibility = () => {
     setMaskPassword(maskPassword === "password" ? "text" : "password");
   };
@@ -53,6 +58,7 @@ function LogIn() {
       });
       setIsGoogleButtonLoading(false);
       toast.success("Login Successful");
+      navigate("/userdetails");
     } catch (error) {
       setIsGoogleButtonLoading(false);
       toast.error(error.code);
@@ -90,12 +96,12 @@ function LogIn() {
       setEmailInputError(true);
       return;
     }
-    setResetPasswordLoading(true)
+    setResetPasswordLoading(true);
     sendPasswordResetEmail(auth, logInEmailInput)
       .then(() => {
         toast.success("Password reset email sent!");
-        setResetPasswordLoading(false)
-        setEmailInputError(false)
+        setResetPasswordLoading(false);
+        setEmailInputError(false);
       })
       .catch((error) => {
         toast.error(error.message);
@@ -156,7 +162,7 @@ function LogIn() {
             onClick={resetPassword}
             className="text-blue-900 font-semibold float-left ps-1 cursor-pointer outline-none hover:text-blue-600 transition-transform active:translate-y-0.5"
           >
-            {resetPasswordLoading ? <ButtonLoading/> : "Forgot Password?"}
+            {resetPasswordLoading ? <ButtonLoading /> : "Forgot Password?"}
           </button>
           <div className="w-full float-left">
             {passwordInputError && (

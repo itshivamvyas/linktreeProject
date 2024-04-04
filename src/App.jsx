@@ -84,11 +84,6 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {
-    // If user exists, check if name exists or not
-    navigate(user ? (user.name ? "/links" : "/userdetails") : "/");
-  }, [user]);
-
   const contextValue = {
     linksData,
     setLinksData,

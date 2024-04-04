@@ -37,6 +37,7 @@ function SignUp() {
       });
       setIsGoogleButtonLoading(false);
       toast.success("Login Successful");
+      navigate("/userdetails");
     } catch (error) {
       setIsGoogleButtonLoading(false);
       toast.error(error.code);
