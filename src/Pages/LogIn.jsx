@@ -160,7 +160,7 @@ function LogIn() {
           </div>
           <button
             onClick={resetPassword}
-            className="text-blue-900 font-semibold float-left ps-1 cursor-pointer outline-none hover:text-blue-600 transition-transform active:translate-y-0.5"
+            className="text-blue-900 font-semibold float-left ps-1 cursor-pointer outline-none hover:text-blue-600 hover:underline transition-transform active:translate-y-0.5"
           >
             {resetPasswordLoading ? <ButtonLoading /> : "Forgot Password?"}
           </button>
