@@ -26,6 +26,13 @@ function SignUp() {
   const [isGoogleButtonLoading, setIsGoogleButtonLoading] = useState(false);
 
   const loginWithGoogle = async () => {
+    if (usernameInput === "") {
+      setUsernameError(true);
+      return;
+    }
+    if (usernameError) {
+      return;
+    }
     setIsGoogleButtonLoading(true);
     try {
       const u = await signInWithPopup(auth, provider);
@@ -37,7 +44,6 @@ function SignUp() {
       });
       setIsGoogleButtonLoading(false);
       toast.success("Login Successful");
-      navigate("/userdetails");
     } catch (error) {
       setIsGoogleButtonLoading(false);
       toast.error(error.code);

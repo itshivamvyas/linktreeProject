@@ -28,8 +28,9 @@ function LogIn() {
   const [isGoogleButtonLoading, setIsGoogleButtonLoading] = useState(false);
   const [passwordShowIcon, setPasswordShowIcon] = useState(false);
   const [resetPasswordLoading, setResetPasswordLoading] = useState(false);
+  const [information, setInformation] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const togglePasswordVisibility = () => {
     setMaskPassword(maskPassword === "password" ? "text" : "password");
   };
@@ -58,7 +59,6 @@ function LogIn() {
       });
       setIsGoogleButtonLoading(false);
       toast.success("Login Successful");
-      navigate("/userdetails");
     } catch (error) {
       setIsGoogleButtonLoading(false);
       toast.error(error.code);
@@ -99,14 +99,17 @@ function LogIn() {
     setResetPasswordLoading(true);
     sendPasswordResetEmail(auth, logInEmailInput)
       .then(() => {
+        setInformation(true);
         toast.success("Password reset email sent!");
         setResetPasswordLoading(false);
         setEmailInputError(false);
+        setTimeout(() => {
+          setInformation(false);
+        }, 4000);
       })
       .catch((error) => {
-        toast.error(error.message);
+        setResetPasswordLoading(false);
         toast.error(error.code);
-        // ..
       });
   };
 
@@ -158,12 +161,22 @@ function LogIn() {
               className="cursor-pointer mr-3"
             />
           </div>
-          <button
-            onClick={resetPassword}
-            className="text-blue-900 font-semibold float-left ps-1 cursor-pointer outline-none hover:text-blue-600 hover:underline transition-transform active:translate-y-0.5"
-          >
-            {resetPasswordLoading ? <ButtonLoading /> : "Forgot Password?"}
-          </button>
+
+          {information ? (
+            <p className="max-w-xl text-red-500">
+              <span className="font-bold flex">Information</span>
+              If your account exists, a password reset link was sent to your
+              registered email address. Please check your spam mails also.
+            </p>
+          ) : (
+            <button
+              onClick={resetPassword}
+              className="text-blue-900 font-semibold float-left ps-1 cursor-pointer outline-none hover:text-blue-600 hover:underline transition-transform active:translate-y-0.5"
+            >
+              {resetPasswordLoading ? <ButtonLoading /> : "Forgot Password?"}
+            </button>
+          )}
+
           <div className="w-full float-left">
             {passwordInputError && (
               <p className="font-semibold text-red-600">
