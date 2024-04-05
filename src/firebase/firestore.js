@@ -27,7 +27,7 @@ export async function addOrUpdateUserDetail(uid, data) {
 export async function getUserDetailData(uid) {
   try {
     const dataDoc = await getDoc(doc(usersDetailRef, uid));
-    if (data.exists) return dataDoc.data();
+    if (dataDoc.exists) return dataDoc.data();
     else return null;
   } catch (error) {
     console.log(error);
