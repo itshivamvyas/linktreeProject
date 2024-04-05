@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { IconArrowLeft } from "@tabler/icons-react";
+import { IconArrowLeft, IconMailCheck } from "@tabler/icons-react";
+import { getAuth, sendEmailVerification } from "firebase/auth";
+import { toast } from "react-hot-toast";
+import { useAppContext } from "../App";
 
 function Yourprofile() {
+  const auth = getAuth();
+  const { user } = useAppContext();
+
+  const [username, setUsername] = useState(user.username);
+  const [email, setEmail] = useState(user.email);
+  const [name, setName] = useState(user.name);
+  const [photo, setPhoto] = useState(user.photo);
+  const [bio, setBio] = useState("");
+
+  const verifyEmail = () => {
+    sendEmailVerification(auth.currentUser)
+      .then(() => {
+        toast.success("Verification email sent");
+      })
+      .catch((error) => {
+        toast.error("Error sending verification email");
+      });
+  };
+
   return (
     <div className="bg-white min-h-screen w-screen flex flex-col items-center justify-center">
       <Link rel="stylesheet" to="/">
@@ -10,12 +32,23 @@ function Yourprofile() {
       </Link>
       <div className="flex flex-col justify-center items-center w-full">
         <div className="flex flex-col justify-center items-center">
-          <img
-            src="./user.png"
-            alt="user"
-            className="size-60 cursor-pointer rounded-full"
-          />
-          <p className="cursor-pointer">Change Profile Picture</p>
+          {photo ? (
+            <img
+              src={photo}
+              alt="user"
+              className="size-36 cursor-pointer rounded-full"
+            />
+          ) : (
+            <img
+              src="./user.png"
+              alt="user"
+              className="size-40 cursor-pointer rounded-full"
+            />
+          )}
+
+          <p className="cursor-pointer text-blue-900 font-semibold hover:underline">
+            Change Profile Picture
+          </p>
         </div>
         <form action="" className="flex flex-col gap-16 min-w-[700px] p-6">
           <div className="flex flex-col gap-6">
@@ -25,6 +58,7 @@ function Yourprofile() {
                 <input
                   type="text"
                   id="name"
+                  value={name}
                   placeholder="Enter Your Name"
                   className="p-3 rounded-xl bg-slate-100 outline-none focus-within:ring-2 ring-black"
                 />
@@ -35,15 +69,41 @@ function Yourprofile() {
               <label htmlFor="email" className="flex flex-col gap-1">
                 <div className="flex items-center  gap-3">
                   <p className="ps-2">Your Email</p>
-                  <p className="p-1 bg-slate-200 text-xs rounded-md cursor-pointer">
-                    Verify Your Email
-                  </p>
+                  {auth.currentUser.emailVerified ? (
+                    <p className="p-1 bg-slate-200 text-xs rounded-md cursor-pointer flex gap-1">
+                      <IconMailCheck className="size-4" /> Verified
+                    </p>
+                  ) : (
+                    <p
+                      onClick={verifyEmail}
+                      className="p-1 bg-slate-200 text-xs rounded-md cursor-pointer"
+                    >
+                      Verify Your Email
+                    </p>
+                  )}
                 </div>
                 <input
                   disabled
                   type="email"
                   id="email"
+                  value={email}
                   placeholder="Enter Your Email"
+                  className="p-3 rounded-xl bg-slate-100 outline-none focus-within:ring-2 ring-black"
+                />
+              </label>
+            </div>
+
+            <div>
+              <label htmlFor="bio" className="flex flex-col gap-1">
+                <p className="ps-2">Bio</p>
+                <input
+                  type="text"
+                  id="bio"
+                  value={bio}
+                  onChange={(e) => {
+                    setBio(e.target.value);
+                  }}
+                  placeholder="Enter Your Bio"
                   className="p-3 rounded-xl bg-slate-100 outline-none focus-within:ring-2 ring-black"
                 />
               </label>
@@ -56,6 +116,7 @@ function Yourprofile() {
                   disabled
                   type="text"
                   id="username"
+                  value={username}
                   placeholder="Enter Your Username"
                   className="p-3 rounded-xl bg-slate-100 outline-none focus-within:ring-2 ring-black"
                 />
