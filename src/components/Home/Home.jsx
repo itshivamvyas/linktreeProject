@@ -52,13 +52,13 @@ function Home() {
             </ul>
             <ul className="flex flex-row p-2 gap-5 pe-5 items-center">
               <Link rel="stylesheet" to="/signup">
-                <li className="bg-emerald-200 text-emerald-900 hover:scale-105 transition-transform rounded-xl shadow-inner shadow-blue-800/25 px-6 py-2 font-bold active:translate-y-0.5 cursor-pointer flex flex-row gap-1 justify-center items-center">
+                <li className="bg-emerald-200 text-emerald-900 hover:scale-105 transition-transform rounded-3xl shadow-inner shadow-blue-800/25 px-6 py-2 font-bold active:translate-y-0.5 cursor-pointer flex flex-row gap-1 justify-center items-center">
                   SignUp
                 </li>
               </Link>
 
               <Link rel="stylesheet" to="/login">
-                <li className="bg-emerald-900 text-emerald-200 hover:scale-105 transition-transform rounded-xl shadow-inner shadow-blue-800/25 px-6 py-2 font-bold active:translate-y-0.5 cursor-pointer flex flex-row gap-1 justify-center items-center">
+                <li className="text-emerald-900 shadow-inner shadow-blue-800/25 px-6 py-2 font-bold active:translate-y-0.5 cursor-pointer flex flex-row gap-1 justify-center items-center transition-all duration-700 bg-gradient-to-br to-emerald-300 via-white from-emerald-700 bg-size-200 hover:bg-right-bottom">
                   Login
                 </li>
               </Link>

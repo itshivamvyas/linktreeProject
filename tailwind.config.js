@@ -2,11 +2,15 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: { 
-      fontFamily: { 
-        pacifico: ["Pacifico", "sans-serif"] 
-      }
-     },
+    extend: {
+      //for gradient hover effect
+      backgroundSize: {
+        "size-200": "200% 200%",
+      },
+      fontFamily: {
+        pacifico: ["Pacifico", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 };
