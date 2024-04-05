@@ -17,6 +17,8 @@ import OtpVerification from "./Pages/OtpVerification";
 import { toast } from "react-hot-toast";
 import { addOrUpdateUserDetail } from "./firebase/firestore";
 
+import { getUserDetailData } from "./firebase/firestore";
+
 function App() {
   const otpConfirmationResult = useRef(null);
 
@@ -49,7 +51,7 @@ function App() {
       await addOrUpdateUserDetail(u.user.uid, {
         phone: u.user.phoneNumber,
         username: usernameInput,
-        name: name
+        name: name,
       });
 
       toast.success("Login Successful");
@@ -72,12 +74,8 @@ function App() {
     checkForUser();
     auth.onAuthStateChanged(async (u) => {
       if (u) {
-        // console.log(await getUserDetailData(u.uid))
-        setUser({
-          name: u.displayName || name,
-          picture: u.photoURL,
-          email: u.email,
-        });
+        const userData = await getUserDetailData(u.uid);
+        setUser(userData);
       } else {
         setUser(null);
       }
