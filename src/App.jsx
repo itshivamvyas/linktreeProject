@@ -16,12 +16,10 @@ import Yourprofile from "./Pages/Yourprofile";
 import OtpVerification from "./Pages/OtpVerification";
 import { toast } from "react-hot-toast";
 import { addOrUpdateUserDetail } from "./firebase/firestore";
-
 import { getUserDetailData } from "./firebase/firestore";
 
 function App() {
   const otpConfirmationResult = useRef(null);
-
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -49,9 +47,7 @@ function App() {
     try {
       const u = await otpConfirmationResult.current.confirm(otp);
       await addOrUpdateUserDetail(u.user.uid, {
-        phone: u.user.phoneNumber,
-        username: usernameInput,
-        name: name,
+        phone: u.user.phoneNumber
       });
 
       toast.success("Login Successful");
@@ -59,9 +55,10 @@ function App() {
       setOtp("");
       setPhoneNumber("");
       setName("");
-      usernameInput("");
+      setUsernameInput("");
     } catch (error) {
       toast.error("Invalid OTP");
+      console.log(error);
       setVerifyOtpLoading(false);
     }
   };
