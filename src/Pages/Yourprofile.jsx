@@ -36,13 +36,13 @@ function Yourprofile() {
             <img
               src={photo}
               alt="user"
-              className="size-36 cursor-pointer rounded-full"
+              className="size-36 cursor-pointer rounded-full mb-2"
             />
           ) : (
             <img
               src="./user.png"
               alt="user"
-              className="size-40 cursor-pointer rounded-full"
+              className="size-36 cursor-pointer rounded-full"
             />
           )}
 
