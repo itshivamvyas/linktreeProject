@@ -1,6 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { IconArrowLeft } from "@tabler/icons-react";
 import { useAppContext } from "../App";
 
 function Userdetails() {
