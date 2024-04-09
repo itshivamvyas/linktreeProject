@@ -59,6 +59,7 @@ function LogIn() {
       });
       setIsGoogleButtonLoading(false);
       toast.success("Login Successful");
+      (u.user.username ? navigate("/") : navigate("/userdetails"))
     } catch (error) {
       setIsGoogleButtonLoading(false);
       toast.error(error.code);
