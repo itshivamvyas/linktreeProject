@@ -4,16 +4,33 @@ import { IconArrowLeft, IconMailCheck } from "@tabler/icons-react";
 import { getAuth, sendEmailVerification } from "firebase/auth";
 import { toast } from "react-hot-toast";
 import { useAppContext } from "../App";
+import { doc, setDoc } from "firebase/firestore"; 
+import { usersDetailRef } from "../firebase/firestore";
 
 function Yourprofile() {
   const auth = getAuth();
-  const { user } = useAppContext();
-
+  const { user, bio, setBio } = useAppContext();
   const [username, setUsername] = useState(user.username);
   const [email, setEmail] = useState(user.email);
   const [name, setName] = useState(user.name);
   const [photo, setPhoto] = useState(user.photo);
-  const [bio, setBio] = useState("");
+  
+  const updateBio = async (e) => {
+    e.preventDefault()
+    try {
+      await setDoc(doc(usersDetailRef, auth.currentUser.uid), {
+        bio: bio
+      }, {
+        merge: true
+      });
+      toast.success("Update Successfully");
+    } catch (error) {
+      console.log(error)
+      toast.error(error.code);
+    }
+  }
+
+
 
   const verifyEmail = () => {
     sendEmailVerification(auth.currentUser)
@@ -59,6 +76,9 @@ function Yourprofile() {
                   type="text"
                   id="name"
                   value={name}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
                   placeholder="Enter Your Name"
                   className="p-3 rounded-xl bg-slate-100 outline-none focus-within:ring-2 ring-black"
                 />
@@ -87,6 +107,9 @@ function Yourprofile() {
                   type="email"
                   id="email"
                   value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
                   placeholder="Enter Your Email"
                   className="p-3 rounded-xl bg-slate-100 outline-none focus-within:ring-2 ring-black"
                 />
@@ -117,6 +140,9 @@ function Yourprofile() {
                   type="text"
                   id="username"
                   value={username}
+                  onChange={(e) => {
+                    setUsername(e.target.value);
+                  }}
                   placeholder="Enter Your Username"
                   className="p-3 rounded-xl bg-slate-100 outline-none focus-within:ring-2 ring-black"
                 />
@@ -126,6 +152,7 @@ function Yourprofile() {
           <div>
             <button
               type="submit"
+              onClick={updateBio}
               className="flex justify-center items-center select-none gap-2 py-3 px-5 bg-black rounded-xl text-white font-bold w-full hover:bg-opacity-85 shadow-lg shadow-black/40 z-50 transition-transform active:translate-y-0.5"
             >
               Save

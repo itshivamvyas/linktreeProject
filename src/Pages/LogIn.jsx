@@ -55,7 +55,6 @@ function LogIn() {
         name: u.user.displayName,
         email: u.user.email,
         photo: u.user.photoURL,
-        username: usernameInput,
       });
       setIsGoogleButtonLoading(false);
       toast.success("Login Successful");

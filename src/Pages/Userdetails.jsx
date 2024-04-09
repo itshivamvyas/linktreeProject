@@ -2,7 +2,7 @@ import React from "react";
 import { useAppContext } from "../App";
 
 function Userdetails() {
-  const {user} = useAppContext()
+  const {user, bio, setBio} = useAppContext()
   return (
     <div className="bg-emerald-200 min-h-screen w-screen flex flex-col items-center justify-center">
       <div className="flex flex-col justify-center items-center w-full">
@@ -35,6 +35,22 @@ function Userdetails() {
               />
             </label>
           </div>
+
+          <div>
+              <label htmlFor="bio" className="flex flex-col gap-1">
+                <p className="ps-2">Bio</p>
+                <input
+                  type="text"
+                  id="bio"
+                  value={bio}
+                  onChange={(e) => {
+                    setBio(e.target.value);
+                  }}
+                  placeholder="Enter Your Bio"
+                  className="p-3 rounded-xl bg-slate-100 outline-none focus-within:ring-2 ring-black"
+                />
+              </label>
+            </div>
 
           </div>
           <div>

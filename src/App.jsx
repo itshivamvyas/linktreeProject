@@ -15,8 +15,8 @@ import Themes from "./Pages/Themes";
 import Yourprofile from "./Pages/Yourprofile";
 import OtpVerification from "./Pages/OtpVerification";
 import { toast } from "react-hot-toast";
-import { addOrUpdateUserDetail } from "./firebase/firestore";
-import { getUserDetailData } from "./firebase/firestore";
+import { addOrUpdateUserDetail, usersDetailRef } from "./firebase/firestore";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
 
 function App() {
   const otpConfirmationResult = useRef(null);
@@ -28,6 +28,7 @@ function App() {
   const [otp, setOtp] = useState("");
   const [signUpEmailInput, setSignUpEmailInput] = useState("");
   const [name, setName] = useState("");
+  const [bio, setBio] = useState("");
   const [usernameInput, setUsernameInput] = useState("");
   const [linksData, setLinksData] = useState(() => {
     const stored = localStorage.getItem("links");
@@ -47,7 +48,7 @@ function App() {
     try {
       const u = await otpConfirmationResult.current.confirm(otp);
       await addOrUpdateUserDetail(u.user.uid, {
-        phone: u.user.phoneNumber
+        phone: u.user.phoneNumber,
       });
 
       toast.success("Login Successful");
@@ -71,8 +72,11 @@ function App() {
     checkForUser();
     auth.onAuthStateChanged(async (u) => {
       if (u) {
-        const userData = await getUserDetailData(u.uid);
-        setUser(userData);
+        onSnapshot(doc(usersDetailRef, u.uid), (snapshot) => {
+          const data = snapshot.data();
+          data.uid = snapshot.id;
+          setUser(data)
+        });
       } else {
         setUser(null);
       }
@@ -96,6 +100,8 @@ function App() {
     name,
     setName,
     verifyOtpLoading,
+    bio,
+    setBio,
   };
 
   if (isLoading) {
