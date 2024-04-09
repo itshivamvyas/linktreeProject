@@ -12,9 +12,9 @@ function Preview() {
           <div className="overflow-y-auto no-scrollbar h-full px-4">
           <div className="text-justify ">
             <div className="flex flex-col gap-1 justify-center items-center p-5">
-            {user.picture ? (
+            {user.photo ? (
                 <img
-                  src={user.picture}
+                  src={user.photo}
                   alt="User"
                   className="rounded-full"
                 />
@@ -23,8 +23,8 @@ function Preview() {
                   className="rounded-full size-16"
                 />
               )}
-              <h1 className="font-bold">@Itshivamvyas</h1>
-              <h1>Software Developer</h1>
+              <h1 className="font-bold">{user.username && "@" + user.username}</h1>
+              <h1>{user.bio}</h1>
             </div>
 
             <div className="flex flex-col gap-3 cursor-pointer">
