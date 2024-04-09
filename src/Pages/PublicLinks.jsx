@@ -12,9 +12,9 @@ function PublicLinks() {
     <div>
       <div className="bg-slate-200 w-screen min-h-screen flex flex-col justify-center items-center">
       <div className="flex flex-col gap-1 justify-center items-center p-5">
-      {user.picture ? (
+      {user.photo ? (
                 <img
-                  src={user.picture}
+                  src={user.photo}
                   alt="User"
                   className="rounded-full"
                 />
@@ -23,8 +23,8 @@ function PublicLinks() {
                   className="rounded-full size-20"
                 />
               )}
-              <h1 className="font-bold">@Itshivamvyas</h1>
-              <h1>Software Developer</h1>
+              <h1 className="font-bold">{user.username && "@" + user.username}</h1>
+              <h1>{user.bio}</h1>
             </div>
 
             <div className="flex flex-col gap-3 cursor-pointer w-full p-4 max-w-3xl">
