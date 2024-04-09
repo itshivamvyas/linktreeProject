@@ -45,9 +45,9 @@ function Header() {
               <span className="font-bold">Hi, {user.name}</span>
             </li>
             <li className="cursor-pointer">
-              {user.picture ? (
+              {user.photo ? (
                 <img
-                  src={user.picture}
+                  src={user.photo}
                   alt="User"
                   className="rounded-full hover:scale-110 transition-transform border-4 size-10 active:translate-y-0.5"
                   onClick={onProfileClick}
