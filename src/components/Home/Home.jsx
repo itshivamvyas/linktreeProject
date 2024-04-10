@@ -58,7 +58,7 @@ function Home() {
               </Link>
 
               <Link rel="stylesheet" to="/login">
-                <li className="text-white shadow-inner shadow-blue-800/25 px-6 py-3 font-bold active:translate-y-0.5 cursor-pointer flex flex-row gap-1 justify-center items-center transition-all duration-700 bg-gradient-to-br to-emerald-900 via-white from-emerald-900 rounded-xl bg-size-200 hover:bg-right-bottom">
+                <li className="text-white shadow-inner shadow-blue-800/25 px-6 py-3 font-bold active:translate-y-0.5 cursor-pointer flex flex-row gap-1 justify-center items-center transition-all duration-700 bg-gradient-to-br to-emerald-900 via-emerald-200 from-emerald-900 rounded-xl bg-size-200 hover:bg-right-bottom">
                   Login
                 </li>
               </Link>
