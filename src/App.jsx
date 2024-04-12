@@ -15,8 +15,13 @@ import Themes from "./Pages/Themes";
 import Yourprofile from "./Pages/Yourprofile";
 import OtpVerification from "./Pages/OtpVerification";
 import { toast } from "react-hot-toast";
-import { addOrUpdateUserDetail, usersDetailRef } from "./firebase/firestore";
-import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import {
+  addOrUpdateUserDetail,
+  db,
+  usersDetailRef,
+  usersLinksRef,
+} from "./firebase/firestore";
+import { collection, doc, getDoc, onSnapshot } from "firebase/firestore";
 
 function App() {
   const otpConfirmationResult = useRef(null);
@@ -30,10 +35,7 @@ function App() {
   const [name, setName] = useState("");
   const [bio, setBio] = useState("");
   const [usernameInput, setUsernameInput] = useState("");
-  const [linksData, setLinksData] = useState(() => {
-    const stored = localStorage.getItem("links");
-    return stored ? JSON.parse(stored) : [];
-  });
+  const [linksData, setLinksData] = useState([]);
 
   const isAuth = user !== null;
 
@@ -65,8 +67,18 @@ function App() {
   };
 
   useEffect(() => {
-    localStorage.setItem("links", JSON.stringify(linksData));
-  }, [linksData]);
+    if (!user || !user.username) return;
+    const unsub = onSnapshot(
+      collection(db, "links", user.username, "data"),
+      (snapshot) => {
+        setLinksData(
+          snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+        );
+      }
+    );
+
+    return () =>  unsub();
+  }, [user]);
 
   useEffect(() => {
     checkForUser();
@@ -75,7 +87,7 @@ function App() {
         onSnapshot(doc(usersDetailRef, u.uid), (snapshot) => {
           const data = snapshot.data();
           data.uid = snapshot.id;
-          setUser(data)
+          setUser(data);
         });
       } else {
         setUser(null);

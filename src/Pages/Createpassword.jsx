@@ -18,25 +18,28 @@ function Createpassword() {
     setName,
   } = useAppContext();
   const [passwordInputError, setPasswordInputError] = useState(false);
-  const [inputRegexError, setInputRegexError] = useState(false);
+  // const [inputRegexError, setInputRegexError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [signUpPasswordInput, setSignUpPasswordInput] = useState("");
 
-  const passwordCheck = () => {
-    const regex = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
-    return regex.test(signUpPasswordInput);
-  };
+  //It Is Used For Password Security
+  // const passwordCheck = () => {
+  //   const regex = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
+  //   return regex.test(signUpPasswordInput);
+  // };
 
   const onSubmit = async (email, password) => {
     if (signUpPasswordInput.length < 6) {
       setPasswordInputError(true);
       return;
     }
-    if (!passwordCheck()) {
-      setInputRegexError(true);
-      setIsLoading(false);
-      return;
-    }
+
+    //It Is Used For Password Security
+    // if (!passwordCheck()) {
+    //   setInputRegexError(true);
+    //   setIsLoading(false);
+    //   return;
+    // }
     setIsLoading(true);
     try {
       const u = await createUserWithEmailAndPassword(auth, email, password);
@@ -80,7 +83,7 @@ function Createpassword() {
             <input
               type="password"
               onChange={(e) => {
-                setInputRegexError(false);
+                // setInputRegexError(false);
                 setPasswordInputError(false);
                 setSignUpPasswordInput(e.target.value);
               }}
@@ -108,12 +111,12 @@ function Createpassword() {
               Password is too Shorter!
             </p>
           )}
-          {inputRegexError && (
+          {/* {inputRegexError && (
             <p className="text-red-600 float-left w-full font-semibold">
               Ensures that the password contains at least one numeric digit and
               at least one alphabet character.
             </p>
-          )}
+          )} */}
         </div>
 
         <div className="flex flex-col justify-center items-center gap-3 w-full">

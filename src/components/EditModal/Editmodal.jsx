@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react";
 import { IconX } from "@tabler/icons-react";
+import { updateDoc } from "firebase/firestore";
+import { useAppContext } from "../../App";
+import { updateUserLink } from "../../firebase/firestore";
 
-function Editmodal({ closeEditModal }) {
-  const [titleInput, setTitleInput] = useState("");
-  const [urlInput, setUrlInput] = useState("");
+function Editmodal({ closeEditModal, id, title, url }) {
+  const { user } = useAppContext();
+  const [titleInput, setTitleInput] = useState(title);
+  const [urlInput, setUrlInput] = useState(url);
   const [titleError, setTitleError] = useState(false);
   const [urlError, setUrlError] = useState(false);
 
-  const onSave = (e) => {
+  const onSave = async (e) => {
     e.preventDefault();
 
     if (titleInput.length === 0) {
-      setTitleError(true);
+      setTitleError();
       return;
     }
 
@@ -20,7 +24,12 @@ function Editmodal({ closeEditModal }) {
       return;
     }
 
-    closeModal();
+    await updateUserLink(user.username, id, {
+      title: titleInput,
+      url: urlInput,
+    });
+
+    closeEditModal();
   };
 
   const titleHandler = (e) => {

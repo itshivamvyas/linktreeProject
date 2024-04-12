@@ -7,24 +7,36 @@ import {
 } from "@tabler/icons-react";
 import { useState } from "react";
 import { useAppContext } from "../App";
-import prependHttp from 'prepend-http';
+import prependHttp from "prepend-http";
+import Editmodal from "../components/EditModal/Editmodal";
+import { deleteUserLink } from "../firebase/firestore";
 
-function Todo({ title, url, id, showEditModal}) {
+function Todo({ title, url, id }) {
   const [isChecked, setIsChecked] = useState(true);
+  const [editModal, setEditModal] = useState(false);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
 
-  const {linksData, setLinksData} = useAppContext();
+  const { user } = useAppContext();
 
   const deleteTodo = () => {
-    const newTodos = linksData.filter((_, i) => i !== id);
-    setLinksData(newTodos);
+    deleteUserLink(user.username, id);
+  };
+
+  const closeEditModal = () => {
+    setEditModal(false);
+  };
+
+  const showEditModal = () => {
+    setEditModal(true);
   };
 
   return (
     <div className="flex flex-col gap-6 bg-white p-8 rounded-3xl mt-5">
+      {editModal && <Editmodal closeEditModal={closeEditModal} id={id} title={title} url={url} />}
+
       <div className="flex flex-row justify-between items-start">
         <div className="flex flex-col gap-3">
           <div className="flex gap-3">
@@ -53,7 +65,6 @@ function Todo({ title, url, id, showEditModal}) {
             <Icon icon={IconExternalLink} />
           </a>
           {/* <Icon icon={IconStar} /> */}
-
         </div>
 
         <Icon icon={IconTrash} isDanger={true} onClick={deleteTodo} />
@@ -71,7 +82,7 @@ function Icon({ icon, isDanger, onClick }) {
 
   return (
     <div
-    onClick={onClick}
+      onClick={onClick}
       className={`${dangerClassName} p-2 rounded-full cursor-pointer active:translate-y-0.5`}
     >
       <I size={22} />
